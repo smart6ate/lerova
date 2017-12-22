@@ -1,0 +1,38 @@
+{
+    "name": "smart6ate/lerova",
+    "description": "An easy-to-use conent marketing tool for creators - Built with Laravel",
+    "keywords": ["framework", "laravel","content","blog", "creators","manager","markting","easy","cms"],
+    "license": "MIT",
+    "type": "project",
+
+    "authors": [
+        {
+            "name": "Sebastian Fix",
+            "email": "info@smartgate.ch"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "Smart6ate\\Lerova\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "illuminate/database": ">= 5.0",
+        "illuminate/support": ">= 5.0"
+
+    },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Smart6ate\\Lerova\\App\\Providers\\LerovaServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.1",
+        "laravel/dusk": "^2.0"
+    }
+}

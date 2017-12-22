@@ -1,0 +1,40 @@
+.inset
+{
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent !important;
+    z-index: 999;
+}
+
+.inset img
+{
+    border-radius: inherit;
+    width: inherit;
+    height: inherit;
+    display: block;
+    position: relative;
+    z-index: 998;
+}
+
+
+.profile-avatar
+{
+    padding: 5px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: transparent !important;
+    z-index: 999;
+}
+
+.profile-avatar img
+{
+    border-radius: inherit;
+    width: inherit;
+    height: inherit;
+    display: block;
+    position: relative;
+    z-index: 998;
+}

@@ -1,0 +1,14 @@
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/redactor.min.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/lang/de.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/imagemanager.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/clips.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/table.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/alignment.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/inlinestyle.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/fontsize.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/fontfamily.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/fontcolor.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/uploadcare.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/fullscreen.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/properties.js') }}"></script>
+<script charset="utf-8" src="{{ asset('assets/libraries/redactor/plugins/source.js') }}"></script>
