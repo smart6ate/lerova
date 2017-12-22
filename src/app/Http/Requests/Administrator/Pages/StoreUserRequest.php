@@ -1,6 +1,6 @@
 <?php
 
-namespace Smart6ate\Lerova\App\Http\Requests\Administrator\Pages;
+namespace App\Http\Requests\Lerova\Administrator\Pages;
 
 
 use Illuminate\Foundation\Http\FormRequest;

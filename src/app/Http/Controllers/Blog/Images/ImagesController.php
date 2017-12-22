@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Lerova\Blog\Images;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Lerova\Blog\Images\StoreImagesRequest;
+use App\Http\Requests\Lerova\Blog\Images\UpdateImagesRequest;
 use App\Models\Lerova\Blog;
 use App\Models\Lerova\Page;
-use Smart6ate\Lerova\App\Http\Requests\Blog\Images\StoreImagesRequest;
-use Smart6ate\Lerova\App\Http\Requests\Blog\Images\UpdateImagesRequest;
+use Illuminate\Support\Facades\Session;
 
 class ImagesController extends Controller
 {
@@ -25,6 +26,9 @@ class ImagesController extends Controller
         $pages = Page::all();
 
         if (!count($pages)) {
+
+            Session::flash('warning', 'Please create a Page first!');
+
 
             return redirect()->route('lerova.blog.index');
         }
@@ -46,6 +50,8 @@ class ImagesController extends Controller
             'image' => request('image'),
         ]);
 
+
+        Session::flash('success', 'Image successfully created!');
 
         return redirect()->route('lerova.blog.index');
 
@@ -82,6 +88,7 @@ class ImagesController extends Controller
 
         $blog->save();
 
+        Session::flash('success', 'Image successfully updated!');
 
         return redirect()->route('lerova.blog.images.edit', $blog);
 

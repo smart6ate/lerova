@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Lerova\Administrator;
 
 use App\Http\Controllers\Controller;
-use App\Models\Lerova\Event;
-use App\Models\Lerova\Image;
+use App\Http\Requests\Lerova\Administrator\Pages\StorePageRequest;
+use App\Models\Lerova\Blog;
 use App\Models\Lerova\Page;
-use App\Models\Lerova\Post;
-use Smart6ate\Lerova\App\Http\Requests\Administrator\Pages\StorePageRequest;
-use Smart6ate\Lerova\App\Http\Requests\Administrator\Pages\UpdatePageRequest;
+use Illuminate\Support\Facades\Session;
 
 
 class PagesController extends Controller
@@ -47,6 +45,9 @@ class PagesController extends Controller
         ]);
 
 
+        Session::flash('success', 'Pages successfully created!');
+
+
         return redirect()->route('lerova.administrator.pages.index');
     }
 
@@ -56,6 +57,9 @@ class PagesController extends Controller
         $page->published = true;
         $page->save();
 
+        Session::flash('success', 'Page successfully published!');
+
+
         return redirect()->route('lerova.administrator.pages.index');
     }
 
@@ -64,21 +68,25 @@ class PagesController extends Controller
         $page->published = false;
         $page->save();
 
+        Session::flash('success', 'Page successfully withdrawn!');
+
+
         return redirect()->route('lerova.administrator.pages.index');
     }
 
 
     public function delete(Page $page)
     {
-        $posts = Post::where('page_id','=',$page->id)->withTrashed()->get();
-        $events = Event::where('page_id','=',$page->id)->withTrashed()->get();
-        $images = Image::where('page_id','=',$page->id)->withTrashed()->get();
+        $blogs = Blog::where('page_id','=',$page->id)->withTrashed()->get();
 
-        if (!count($posts) and !count($events) and !count($images))
+        if (!count($blogs))
         {
             $page->published = false;
             $page->forceDelete();
         }
+
+        Session::flash('success', 'Page successfully delted!');
+
 
         return redirect()->route('lerova.administrator.pages.index');
     }

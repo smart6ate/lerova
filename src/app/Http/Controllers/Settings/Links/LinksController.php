@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Lerova\Settings\Links;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class LinksController extends Controller
 {
@@ -32,7 +33,6 @@ class LinksController extends Controller
             'instagram' => 'nullable|url',
             'twitter' => 'nullable|url',
             'pinterest' => 'nullable|url',
-            'github' => 'nullable|url',
         ]);
 
         $links = array(
@@ -40,38 +40,22 @@ class LinksController extends Controller
             'instagram' => request('instagram'),
             'twitter' => request('twitter'),
             'pinterest' => request('pinterest'),
-            'github' => request('github'),
         );
+
 
         try
         {
-            if(File::exists(base_path('data/archiv/links.json')))
-            {
-                File::move(base_path('data/archive/links.json'), base_path('data/archive/links_old.json'));
-            }
-
-            File::delete(base_path('data/archiv/links.json'));
-            File::move(base_path('data/links.json'), base_path('data/archive/links.json'));
             File::delete(base_path('data/links.json'));
 
             File::put(base_path('data/links.json'), json_encode($links));
 
-            File::move(base_path('data/archive/links_old.json'), base_path('data/archive/links.json'));
-
         }
         catch (\Exception $e)
         {
-            if(File::exists(base_path('data/archiv/links_old.json')))
-            {
-                File::move(base_path('data/archive/links_old.json'), base_path('data/links.json'));
-            }
-
-            if(File::exists(base_path('data/archiv/links.json')))
-            {
-                File::move(base_path('data/archive/links.json'), base_path('data/links.json'));
-            }
-
+            Session::flash('warning', 'Ups! Something went wrong. Plese contact the Administrator');
         }
+
+        Session::flash('success', 'Links successfully updated!');
 
 
         return redirect()->route('lerova.settings.links.edit');

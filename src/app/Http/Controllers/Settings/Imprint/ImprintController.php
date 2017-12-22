@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Lerova\Settings\Imprint;
 
 use App\Http\Controllers\Controller;
-use App\Models\Lerova\About;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class ImprintController extends Controller
 {
@@ -37,38 +38,23 @@ class ImprintController extends Controller
         $imprint = array(
             'title' => request('title'),
             'body' => request('body'),
+            'updated_at' => Carbon::now(),
+
         );
 
         try
         {
-            if(File::exists(base_path('data/archiv/imprint.json')))
-            {
-                File::move(base_path('data/archive/imprint.json'), base_path('data/archive/imprint_old.json'));
-            }
-
-            File::delete(base_path('data/archiv/imprint.json'));
-            File::move(base_path('data/imprint.json'), base_path('data/archive/imprint.json'));
             File::delete(base_path('data/imprint.json'));
 
             File::put(base_path('data/imprint.json'), json_encode($imprint));
 
-            File::move(base_path('data/archive/imprint_old.json'), base_path('data/archive/imprint.json'));
-
         }
         catch (\Exception $e)
         {
-            if(File::exists(base_path('data/archiv/imprint_old.json')))
-            {
-                File::move(base_path('data/archive/imprint_old.json'), base_path('data/imprint.json'));
-            }
-
-            if(File::exists(base_path('data/archiv/imprint.json')))
-            {
-                File::move(base_path('data/archive/imprint.json'), base_path('data/imprint.json'));
-            }
-
+            Session::flash('warning', 'Ups! Something went wrong. Plese contact the Administrator');
         }
 
+        Session::flash('success', 'Imprint successfully updated!');
 
         return redirect()->route('lerova.settings.imprint.edit');
     }

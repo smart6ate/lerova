@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Lerova\Members;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Lerova\Members\StoreMembersRequest;
+use App\Http\Requests\Lerova\Members\UpdateMembersRequest;
 use App\Models\Lerova\Member;
-use Smart6ate\Lerova\App\Http\Requests\Members\StoreMembersRequest;
-use Smart6ate\Lerova\App\Http\Requests\Members\UpdateMembersRequest;
+use Illuminate\Support\Facades\Session;
 
 class MembersController extends Controller
 {
@@ -42,6 +43,9 @@ class MembersController extends Controller
             'image' => request('image'),
         ]);
 
+        Session::flash('success', 'Member successfully created!');
+
+
         return redirect()->route('lerova.members.index');
     }
 
@@ -67,6 +71,8 @@ class MembersController extends Controller
             $member->save();
         }
 
+        Session::flash('success', 'Member successfully updated!');
+
         return redirect()->route('lerova.members.edit', $member);
     }
 
@@ -79,6 +85,9 @@ class MembersController extends Controller
             $member->save();
         }
 
+        Session::flash('success', 'Member successfully published!');
+
+
         return redirect()->back();
     }
 
@@ -86,6 +95,9 @@ class MembersController extends Controller
     {
         $member->published = false;
         $member->save();
+
+        Session::flash('success', 'Member successfully withdrawn!');
+
 
         return redirect()->back();
     }
@@ -105,6 +117,9 @@ class MembersController extends Controller
         $member->save();
         $member->delete();
 
+        Session::flash('success', 'Member successfully archived!');
+
+
         return redirect()->route('lerova.members.index');
 
     }
@@ -112,6 +127,9 @@ class MembersController extends Controller
     public function restore($id)
     {
         Member::withTrashed()->find($id)->restore();
+
+        Session::flash('success', 'Member successfully restored!');
+
 
         return redirect()->route('lerova.members.archived');
 
@@ -121,6 +139,8 @@ class MembersController extends Controller
     public function destroy($id)
     {
         Member::withTrashed()->find($id)->forceDelete();
+
+        Session::flash('success', 'Member successfully destroyed!');
 
         return redirect()->route('lerova.members.archived');
     }

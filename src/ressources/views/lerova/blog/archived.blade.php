@@ -106,9 +106,15 @@
                     @else
 
                             <div class="col-md-10">
-                        <div class="alert alert-warning">
-                            <span class="pull-right label label-warning">Info</span> No Archived Content available
-                        </div>
+                                <div class="panel panel-danger">
+                                    <div class="panel-body">
+
+                                        <span class="pull-right label label-danger">Info</span> No
+                                        Content available
+                                    </div>
+
+                                </div>
+
                             </div>
 
                     @endif

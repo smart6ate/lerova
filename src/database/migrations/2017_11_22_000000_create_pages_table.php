@@ -18,14 +18,14 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('type')->default(config('lerova.pages.type'));
-            $table->string('language')->default(config('lerova.pages.language'));
+            $table->string('type')->default(config('lerova.core.pages.type'));
+            $table->string('language')->default(config('lerova.core.pages.language'));
 
             $table->string('title')->unique();
-            $table->string('description')->default(config('lerova.pages.description'));
+            $table->string('description')->default(config('lerova.core.pages.description'));
 
             $table->json('keywords')->nullable();
-            $table->string('image');
+            $table->string('image')->default(config('lerova.core.pages.image'));;
             $table->boolean('published')->default(false);
 
             $table->timestamps();

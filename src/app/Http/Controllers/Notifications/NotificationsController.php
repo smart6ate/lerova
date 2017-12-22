@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Lerova\Notifications;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lerova\Notification;
-use Smart6ate\Lerova\App\Http\Requests\Contacts\StoreContactsRequest;
+use Illuminate\Support\Facades\Session;
 
 class NotificationsController extends Controller
 {
@@ -35,20 +35,18 @@ class NotificationsController extends Controller
     {
         $notification->delete();
 
+        Session::flash('success', 'Notification successfully archived!');
+
         return redirect()->route('lerova.notifications.index');
     }
 
 
-    public function store(StoreContactsRequest $request)
-    {
-        Notification::create([
-           'name' => request('name'),
-        ]);
-    }
-
     public function restore($id)
     {
         Notification::withTrashed()->find($id)->restore();
+
+        Session::flash('success', 'Notification successfully restored!');
+
 
         return redirect()->route('lerova.notifications.index');
     }
@@ -64,6 +62,9 @@ class NotificationsController extends Controller
     public function delete($id)
     {
         Notification::withTrashed()->find($id)->forceDelete();
+
+        Session::flash('success', 'Notification successfully deleted!');
+
 
         return redirect()->route('lerova.notifications.archived');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Lerova\Blog;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lerova\Blog;
+use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {
@@ -30,6 +31,8 @@ class BlogController extends Controller
             $blog->save();
         }
 
+        Session::flash('success', 'Entry successfully published!');
+
         return redirect()->back();
     }
 
@@ -37,6 +40,9 @@ class BlogController extends Controller
     {
         $blog->published = false;
         $blog->save();
+
+        Session::flash('success', 'Entry successfully withdrawn!');
+
 
         return redirect()->back();
     }
@@ -56,6 +62,9 @@ class BlogController extends Controller
         $blog->save();
         $blog->delete();
 
+        Session::flash('success', 'Entry successfully archived!');
+
+
         return redirect()->route('lerova.blog.index');
 
     }
@@ -63,6 +72,9 @@ class BlogController extends Controller
     public function restore($uuid)
     {
         Blog::withTrashed()->findByUuid($uuid)->restore();
+
+        Session::flash('success', 'Entry successfully restored!');
+
 
         return redirect()->route('lerova.blog.archived');
 
@@ -72,6 +84,8 @@ class BlogController extends Controller
     public function destroy($uuid)
     {
         Blog::withTrashed()->findByUuid($uuid)->forceDelete();
+
+        Session::flash('success', 'Entry successfully destroyed!');
 
         return redirect()->route('lerova.blog.archived');
     }

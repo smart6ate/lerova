@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Lerova\Users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Lerova\Users\UpdateProfileRequest;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-use Smart6ate\Lerova\App\Http\Requests\Users\UpdateProfileRequest;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
@@ -33,6 +34,7 @@ class ProfileController extends Controller
 
         $user->save();
 
+        Session::flash('success', 'Profile successfully updated!');
 
         return redirect()->route('lerova.profile.index');
     }

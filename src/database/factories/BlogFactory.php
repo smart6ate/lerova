@@ -22,7 +22,7 @@ $factory->define(\App\Models\Lerova\Blog::class, function (Faker $faker) {
 
         'page_id' => function()
         {
-            return factory(\Smart6ate\Lerova\App\Models\Page::class)->create()->id;
+            return factory(\App\Models\Lerova\Page::class)->create()->id;
         },
 
         'author_id' => function()

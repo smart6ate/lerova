@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Lerova\Settings\Privacy;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class PrivacyController extends Controller
 {
@@ -35,36 +37,23 @@ class PrivacyController extends Controller
         $privacy = array(
             'title' => request('title'),
             'body' => request('body'),
+            'updated_at' => Carbon::now(),
         );
 
         try
         {
-            if(File::exists(base_path('data/archiv/privacy.json')))
-            {
-                File::move(base_path('data/archive/privacy.json'), base_path('data/archive/privacy_old.json'));
-            }
-
-            File::delete(base_path('data/archiv/privacy.json'));
-            File::move(base_path('data/privacy.json'), base_path('data/archive/privacy.json'));
             File::delete(base_path('data/privacy.json'));
 
             File::put(base_path('data/privacy.json'), json_encode($privacy));
 
-            File::move(base_path('data/archive/privacy_old.json'), base_path('data/archive/privacy.json'));
-
         }
         catch (\Exception $e)
         {
-            if(File::exists(base_path('data/archiv/privacy_old.json')))
-            {
-                File::move(base_path('data/archive/privacy_old.json'), base_path('data/privacy.json'));
-            }
-
-            if(File::exists(base_path('data/archiv/privacy.json')))
-            {
-                File::move(base_path('data/archive/privacy.json'), base_path('data/privacy.json'));
-            }
+            Session::flash('warning', 'Ups! Something went wrong. Plese contact the Administrator');
         }
+
+        Session::flash('success', 'Privacy successfully updated!');
+
 
         return redirect()->route('lerova.settings.privacy.edit');
     }

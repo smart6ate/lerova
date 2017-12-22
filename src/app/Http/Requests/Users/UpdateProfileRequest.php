@@ -1,6 +1,6 @@
 <?php
 
-namespace Smart6ate\Lerova\App\Http\Requests\Users;
+namespace App\Http\Requests\Lerova\Users;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;

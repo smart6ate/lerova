@@ -26,7 +26,7 @@ return [
     'settings' =>
         [
             'general' => config('lerova.settings.general', false),
-            'contact_details' => config('lerova.settings.contact_details', false),
+            'company' => config('lerova.settings.company', false),
             'contact_form' => config('lerova.settings.contact_form', false),
 
             'pages' => config('lerova.settings.pages', false),
@@ -39,6 +39,14 @@ return [
             'imprint' => config('lerova.settings.imprint', false),
             'privacy' => config('lerova.settings.privacy', false),
         ],
+
+    'pages' =>
+    [
+        'type' => config('lerova.pages.type', 'website'),
+        'language' => config('lerova.pages.language', 'de_DE'),
+        'description' => config('lerova.pages.descritpion', 'Cupcake ipsum dolor sit amet bonbon sweet cupcake. Bonbon pudding marshmallow cupcake ice cream.'),
+        'image' => config('lerova.pages.image', 'https://ucarecdn.com/ca56f6b0-c660-4628-b492-e6a968ae468e/'),
+    ],
 
 
     'blog' =>

@@ -115,6 +115,7 @@
 
 @section('scripts')
 
+    @include('lerova.layouts.partials.scripts.uploadcare')
     @include('lerova.layouts.partials.scripts.redactor')
     @include('lerova.layouts.components.redactor')
 

@@ -25,9 +25,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
             Route::group(['prefix' => '/general'], function () {
 
-                Route::group(['prefix' => '/contacts'], function () {
-                    Route::get('/', 'Lerova\Settings\Contacts\ContactsController@edit')->name('lerova.settings.contacts.edit');
-                    Route::patch('/update', 'Lerova\Settings\Contacts\ContactsController@update')->name('lerova.settings.contacts.update');
+                Route::group(['prefix' => '/company'], function () {
+                    Route::get('/', 'Lerova\Settings\Company\CompanyController@edit')->name('lerova.settings.company.edit');
+                    Route::patch('/update', 'Lerova\Settings\Company\CompanyController@update')->name('lerova.settings.company.update');
                 });
 
                 Route::group(['prefix' => '/contactform'], function () {
@@ -97,6 +97,14 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
                 Route::post('/{page}/publish', 'Lerova\Administrator\PagesController@publish')->name('lerova.administrator.pages.publish');
                 Route::post('/{page}/withdraw', 'Lerova\Administrator\PagesController@withdraw')->name('lerova.administrator.pages.withdraw');
+
+            });
+
+            Route::group(['prefix' => '/analytics'], function () {
+
+                Route::get('/edit', 'Lerova\Administrator\AnalyticsController@edit')->name('lerova.administrator.analytics.edit');
+                Route::patch('/update', 'Lerova\Administrator\AnalyticsController@update')->name('lerova.administrator.analytics.update');
+
 
             });
 

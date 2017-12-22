@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Lerova\Settings\Form;
 
 use App\Http\Controllers\Controller;
-use App\Models\Lerova\About;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class FormController extends Controller
 {
@@ -43,33 +42,18 @@ class FormController extends Controller
 
         try
         {
-            if(File::exists(base_path('data/archiv/form.json')))
-            {
-                File::move(base_path('data/archive/form.json'), base_path('data/archive/form_old.json'));
-            }
-
-            File::delete(base_path('data/archiv/form.json'));
-            File::move(base_path('data/form.json'), base_path('data/archive/form.json'));
             File::delete(base_path('data/form.json'));
 
             File::put(base_path('data/form.json'), json_encode($form));
 
-            File::move(base_path('data/archive/form_old.json'), base_path('data/archive/form.json'));
-
         }
         catch (\Exception $e)
         {
-            if(File::exists(base_path('data/archiv/form_old.json')))
-            {
-                File::move(base_path('data/archive/form_old.json'), base_path('data/form.json'));
-            }
-
-            if(File::exists(base_path('data/archiv/form.json')))
-            {
-                File::move(base_path('data/archive/form.json'), base_path('data/form.json'));
-            }
-
+            Session::flash('warning', 'Ups! Something went wrong. Plese contact the Administrator');
         }
+
+
+        Session::flash('success', 'Contact Form successfully updated!');
 
 
         return redirect()->route('lerova.settings.form.edit');

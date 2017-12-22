@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Lerova\Blog\Events;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Lerova\Blog\Events\StoreEventsRequest;
+use App\Http\Requests\Lerova\Blog\Events\UpdateEventsRequest;
 use App\Models\Lerova\Blog;
 use App\Models\Lerova\Page;
-use Smart6ate\Lerova\App\Http\Requests\Blog\Events\StoreEventsRequest;
-use Smart6ate\Lerova\App\Http\Requests\Blog\Events\UpdateEventsRequest;
+use Illuminate\Support\Facades\Session;
 
 class EventsController extends Controller
 {
@@ -25,6 +26,8 @@ class EventsController extends Controller
         $pages = Page::all();
 
         if (!count($pages)) {
+
+            Session::flash('warning', 'Please create a Page first!');
 
             return redirect()->route('lerova.blog.index');
         }
@@ -49,6 +52,10 @@ class EventsController extends Controller
             'image' => request('image'),
 
         ]);
+
+
+        Session::flash('success', 'Event successfully created!');
+
 
         return redirect()->route('lerova.blog.index');
     }
@@ -82,6 +89,8 @@ class EventsController extends Controller
             $blog->published = false;
         }
         $blog->save();
+
+        Session::flash('success', 'Event successfully updated!');
 
         return redirect()->route('lerova.blog.events.edit', $blog);
 

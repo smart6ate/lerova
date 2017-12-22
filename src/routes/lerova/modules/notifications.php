@@ -6,5 +6,5 @@ Route::group(['prefix' => '/notifications'], function () {
     Route::post('/{notification}/archive', 'Lerova\Notifications\NotificationsController@archive')->name('lerova.notifications.archive');
     Route::get('/archived', 'Lerova\Notifications\NotificationsController@archived')->name('lerova.notifications.archived');
     Route::post('/{id}/restore', 'Lerova\Notifications\NotificationsController@restore')->name('lerova.notifications.restore');
-    Route::post('/{id}/delete', 'Lerova\Notifications\NotificationsController@delete')->name('lerova.notification.delete');
+    Route::post('/{id}/delete', 'Lerova\Notifications\NotificationsController@delete')->name('lerova.notifications.delete');
 });

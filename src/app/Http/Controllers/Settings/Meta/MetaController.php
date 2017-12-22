@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Lerova\Settings\Meta;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Lerova\Settings\Pages\UpdatePageRequest;
 use App\Models\Lerova\Page;
-use Smart6ate\Lerova\App\Http\Requests\Settings\Pages\UpdatePageRequest;
+use Illuminate\Support\Facades\Session;
 
 class MetaController extends Controller
 {
@@ -41,6 +42,9 @@ class MetaController extends Controller
         $page->published = true;
 
         $page->save();
+
+        Session::flash('success', 'Metadata successfully updated!');
+
 
         return redirect()->route('lerova.settings.meta.edit', $page);
     }

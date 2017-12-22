@@ -1,6 +1,6 @@
 <?php
 
-namespace Smart6ate\Lerova\App\Http\Requests\Contacts;
+namespace App\Http\Requests\Lerova\Contacts;
 
 use App\User;
 use Carbon\Carbon;

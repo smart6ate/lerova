@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Lerova\Blog\Posts;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Lerova\Blog\Posts\StorePostsRequest;
+use App\Http\Requests\Lerova\Blog\Posts\UpdatePostsRequest;
 use App\Models\Lerova\Blog;
 use App\Models\Lerova\Page;
-use Smart6ate\Lerova\App\Http\Requests\Blog\Posts\StoreMembersRequest;
-use Smart6ate\Lerova\App\Http\Requests\Blog\Posts\StorePostsRequest;
-use Smart6ate\Lerova\App\Http\Requests\Blog\Posts\UpdateMembersRequest;
-use Smart6ate\Lerova\App\Http\Requests\Blog\Posts\UpdatePostsRequest;
+use Illuminate\Support\Facades\Session;
 
 class PostsController extends Controller
 {
@@ -27,11 +26,14 @@ class PostsController extends Controller
 
         if (!count($pages)) {
 
+            Session::flash('warning', 'Please create a Page first!');
+
             return redirect()->route('lerova.blog.index');
         }
 
         return view('lerova.blog.posts.create', compact('pages'));
     }
+
 
     public function store(StorePostsRequest $request)
     {
@@ -47,6 +49,9 @@ class PostsController extends Controller
             'tags' => request('tags'),
             'image' => request('image'),
         ]);
+
+        Session::flash('success', 'Post successfully created!');
+
 
         return redirect()->route('lerova.blog.index');
 
@@ -81,6 +86,8 @@ class PostsController extends Controller
             $blog->published = false;
             $blog->save();
         }
+
+        Session::flash('success', 'Post successfully updated!');
 
         return redirect()->route('lerova.blog.posts.edit',$blog);
 

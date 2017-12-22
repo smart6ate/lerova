@@ -1,6 +1,6 @@
 <?php
 
-namespace Smart6ate\Lerova\App\Http\Requests\Blog\Posts;
+namespace App\Http\Requests\Lerova\Blog\Posts;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -29,7 +29,7 @@ class StorePostsRequest extends FormRequest
     public function rules()
     {
         return [
-            'page_id' => 'required|exists:meta,id',
+            'page_id' => 'required|exists:pages,id',
             'title' => 'required|max:' . config('lerova.core.blog.title_max'),
             'teaser' => 'required|max:' .config('lerova.core.blog.teaser_max'),
             'body' => 'required',

@@ -6,13 +6,16 @@ use Carbon\Carbon;
 
 use App\Models\Lerova\Notification;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
+use Smart6ate\Lerova\App\Console\Commands\GenerateSitemap;
 use Smart6ate\Lerova\App\Console\Commands\InstallComposer;
 use Smart6ate\Lerova\App\Console\Commands\InstallLerova;
 use Smart6ate\Lerova\App\Console\Commands\RemoveComposer;
 use Smart6ate\Lerova\App\Console\Commands\RemoveLerova;
+use Smart6ate\Lerova\App\Console\Commands\ResetLerova;
 use Smart6ate\Lerova\App\Console\Commands\UpdateLerova;
 
 class LerovaServiceProvider extends ServiceProvider
@@ -33,13 +36,15 @@ class LerovaServiceProvider extends ServiceProvider
         $this->commands([UpdateLerova::class]);
         $this->commands([RemoveLerova::class]);
         $this->commands([RemoveComposer::class]);
+        $this->commands([ResetLerova::class]);
+        $this->commands([GenerateSitemap::class]);
 
         /** Register Core */
         $this->app->register(
             'Smart6ate\Lerova\App\Providers\RoleServiceProvider'
         );
 
-        /** Install Lerova */
+        /* Install Lerova */
         $this->publishes([
             __DIR__ . '/../../config/lerova/' => config_path('lerova/'),
             __DIR__ . '/../../config/lerova.php' => config_path('lerova.php'),
@@ -48,14 +53,18 @@ class LerovaServiceProvider extends ServiceProvider
             __DIR__ . '/../../app/Http/Controllers/' => base_path('app/Http/Controllers/Lerova/'),
             __DIR__ . '/../../app/Http/Middleware/' => base_path('app/Http/Middleware/Lerova/'),
             __DIR__ . '/../../app/Http/Requests/' => base_path('app/Http/Requests/Lerova/'),
-            __DIR__ . '/../../app/Policies/' => base_path('app/Policies/Lerova/'),
             __DIR__ . '/../../app/Traits/' => base_path('app/Traits/Lerova/'),
 
             __DIR__.'/../../database/' => base_path('database'),
+
             __DIR__.'/../../ressources/views' => base_path('resources/views'),
+
             __DIR__.'/../../routes/' => base_path('routes'),
+
             __DIR__.'/../../public/' => public_path('assets'),
-            __DIR__.'/../../tests/' => base_path('tests'),
+
+            __DIR__.'/../../tests' => base_path('tests'),
+
             __DIR__.'/../../data/' => base_path('data'),
 
             __DIR__ . '/../../settings/overrides/Models/' => base_path('app'),
@@ -73,7 +82,6 @@ class LerovaServiceProvider extends ServiceProvider
             __DIR__ . '/../../app/Http/Controllers/' => base_path('app/Http/Controllers/Lerova/'),
             __DIR__ . '/../../app/Http/Middleware/' => base_path('app/Http/Middleware/Lerova/'),
             __DIR__ . '/../../app/Http/Requests/' => base_path('app/Http/Requests/Lerova/'),
-            __DIR__ . '/../../app/Policies/' => base_path('app/Policies/Lerova/'),
             __DIR__ . '/../../app/Traits/' => base_path('app/Traits/Lerova/'),
 
 
@@ -113,6 +121,12 @@ class LerovaServiceProvider extends ServiceProvider
           });
 
         }
+
+        $this->app->booted(function () {
+            $schedule = app(Schedule::class);
+            $schedule->command('sitemap:generate')->daily();
+        });
+
 
     }
 

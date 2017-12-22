@@ -27,17 +27,7 @@ class Page extends Model
 
     public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Blog::class);
     }
 
-
-    public function events()
-    {
-        return $this->hasMany(Event::class);
-    }
-
-    public function images()
-    {
-        return $this->hasMany(Image::class);
-    }
 }

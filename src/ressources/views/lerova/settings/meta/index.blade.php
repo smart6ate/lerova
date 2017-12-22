@@ -57,9 +57,15 @@
             @else
 
                 <div class="col-md-8 col-md-offset-2">
-                    <div class="alert alert-info">
-                        <span class="pull-right label label-default">Info</span> No Metadatas available
+                    <div class="panel panel-danger">
+                        <div class="panel-body">
+
+                            <span class="pull-right label label-danger">Info</span> No
+                            Pages available
+                        </div>
+
                     </div>
+
                 </div>
 
             @endif

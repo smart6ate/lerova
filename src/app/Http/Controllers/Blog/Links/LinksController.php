@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Lerova\Blog\Links;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Lerova\Blog\Events\StoreLinksRequest;
+use App\Http\Requests\Lerova\Blog\Events\UpdateLinksRequest;
 use App\Models\Lerova\Blog;
 use App\Models\Lerova\Page;
-use Smart6ate\Lerova\App\Http\Requests\Blog\Events\StoreLinksRequest;
-use Smart6ate\Lerova\App\Http\Requests\Blog\Events\UpdateLinksRequest;
+use Illuminate\Support\Facades\Session;
 
 class LinksController extends Controller
 {
@@ -24,6 +25,8 @@ class LinksController extends Controller
         $pages = Page::all();
 
         if (!count($pages)) {
+
+            Session::flash('warning', 'Please create a Page first!');
 
             return redirect()->route('lerova.blog.index');
         }
@@ -46,6 +49,8 @@ class LinksController extends Controller
             'image' => request('image'),
         ]);
 
+
+        Session::flash('success', 'Link successfully created!');
 
         return redirect()->route('lerova.blog.index');
 
@@ -81,6 +86,8 @@ class LinksController extends Controller
         }
 
         $blog->save();
+
+        Session::flash('success', 'Link successfully updated!');
 
         return redirect()->route('lerova.blog.links.edit', $blog);
     }

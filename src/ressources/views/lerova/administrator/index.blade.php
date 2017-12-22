@@ -52,6 +52,21 @@
 
 
 
+                    <div class="col-md-4">
+
+                        <a style="color: black;" href="{{ route('lerova.administrator.analytics.edit') }}">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i>
+                                    <hr>
+                                    <strong>Analytics</strong>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+
                 </div>
 
             </div>

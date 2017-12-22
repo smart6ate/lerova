@@ -15,7 +15,7 @@ return [
     'settings' =>
         [
             'general' => false,
-            'contact_details' => false,
+            'company' => false,
             'contact_form' => false,
 
             'pages' => false,
@@ -28,6 +28,7 @@ return [
             'imprint' => false,
             'privacy' => false,
         ],
+
 
     'imperavi' => [
 

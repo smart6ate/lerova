@@ -52,7 +52,7 @@
                             <tbody>
 
 
-                            @foreach($notifications as $notifications)
+                            @foreach($notifications as $notification)
 
                                 <tr>
 
@@ -110,10 +110,16 @@
 
         @else
 
-            <div class="alert alert-info">
-                <span class="pull-right label label-default">Info</span> No archived Notifications available
-            </div>
-        @endif
+                <div class="panel panel-danger">
+                    <div class="panel-body">
+
+                        <span class="pull-right label label-danger">Info</span> No
+                        Notifications available
+                    </div>
+
+                </div>
+
+            @endif
 
         </div>
     </div>

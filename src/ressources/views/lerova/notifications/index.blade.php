@@ -30,9 +30,6 @@
             </div>
 
 
-
-
-
             <div class="col-md-8 col-md-offset-2">
 
 
@@ -45,6 +42,7 @@
 
                                 <thead>
                                 <tr>
+                                    <th>Origin</th>
                                     <th>Name</th>
                                     <th>Received at</th>
                                     <th class="text-center">Archive</th>
@@ -55,6 +53,7 @@
                                 @foreach($notifications as $notification)
 
                                     <tr>
+                                        <td><span class="label label-info">{{ $notification->origin }}</span></td>
                                         <td><a href="{{ route('lerova.notifications.show',$notification) }}">{{ $notification->name }}</a></td>
 
                                         <td class="hidden-sm hidden-xs">{{ $notification->created_at->diffForHumans() }}</td>
@@ -86,9 +85,15 @@
 
                 @else
 
-                    <div class="alert alert-info">
-                        <span class="pull-right label label-default">Info</span> No Notifications available
+                    <div class="panel panel-danger">
+                        <div class="panel-body">
+
+                            <span class="pull-right label label-danger">Info</span> No
+                            Notifications available
+                        </div>
+
                     </div>
+
 
                 @endif
 

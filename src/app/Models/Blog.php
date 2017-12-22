@@ -3,6 +3,7 @@
 namespace App\Models\Lerova;
 
 use App\Traits\Lerova\Orderable;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

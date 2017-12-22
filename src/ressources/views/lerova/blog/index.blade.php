@@ -84,7 +84,8 @@
                                                         {{ method_field('PATCH') }}
 
 
-                                                        <button type="submit" style=" padding: 0; border: none; background: none;">
+                                                        <button type="submit"
+                                                                style=" padding: 0; border: none; background: none;">
                                                             Publish
                                                         </button>
 
@@ -129,8 +130,13 @@
 
                     <div class="col-md-10">
 
-                        <div class="alert alert-warning">
-                            <span class="pull-right label label-warning">Info</span> No Content available
+                        <div class="panel panel-danger">
+                            <div class="panel-body">
+
+                                <span class="pull-right label label-danger">Info</span> No
+                                Content available
+                            </div>
+
                         </div>
 
                     </div>

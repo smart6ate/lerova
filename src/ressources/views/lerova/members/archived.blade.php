@@ -127,9 +127,15 @@
 
                 <div class="col-md-8 col-md-offset-2">
 
-                    <div class="alert alert-warning">
-                        <span class="pull-right label label-warning">Info</span> No Member available
+                    <div class="panel panel-danger">
+                        <div class="panel-body">
+
+                            <span class="pull-right label label-danger">Info</span> No
+                            Members available
+                        </div>
+
                     </div>
+
 
                 </div>
 

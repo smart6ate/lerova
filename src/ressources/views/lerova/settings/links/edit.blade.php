@@ -33,25 +33,6 @@
                     {{ method_field('PATCH') }}
 
 
-                    <h5>Github</h5>
-
-                    <div class="form-group{{ $errors->has('github') ? ' has-error' : '' }}">
-
-                        <div class="col-md-12">
-
-                            <input type="url" id="github" placeholder="Github" name="github" class="form-control" value="{{ $links->github }}">
-
-                            @if ($errors->has('github'))
-                                <span class="help-block">
-                     <strong>{{ $errors->first('github') }}</strong>
-                      </span>
-                            @endif
-
-                        </div>
-
-                    </div>
-
-
                     <h5>Facebook</h5>
 
                     <div class="form-group{{ $errors->has('facebook') ? ' has-error' : '' }}">

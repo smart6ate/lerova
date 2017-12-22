@@ -63,15 +63,15 @@
                         <div class="row text-center">
 
 
-                            @if(config('lerova.settings.contact_details'))
+                            @if(config('lerova.settings.company'))
                                 <div class="col-md-4">
 
-                                    <a href="{{ route('lerova.settings.contacts.edit') }}">
+                                    <a href="{{ route('lerova.settings.company.edit') }}">
                                         <div class="panel panel-default">
                                             <div class="panel-body">
                                                 <i class="fa fa-volume-control-phone fa-2x" aria-hidden="true"></i>
                                                 <hr>
-                                                <strong>Contact Details</strong>
+                                                <strong>Company Details</strong>
                                             </div>
                                         </div>
                                     </a>

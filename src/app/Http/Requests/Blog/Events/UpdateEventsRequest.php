@@ -1,6 +1,6 @@
 <?php
 
-namespace Smart6ate\Lerova\App\Http\Requests\Blog\Events;
+namespace App\Http\Requests\Lerova\Blog\Events;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;

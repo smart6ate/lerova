@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Lerova\Administrator;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Lerova\Administrator\Pages\StoreUserRequest;
+use App\Http\Requests\Lerova\Administrator\Pages\UpdateUserRoleRequest;
 use App\Models\Lerova\Role;
 use App\User;
 
 use Illuminate\Support\Facades\Auth;
-use Smart6ate\Lerova\App\Http\Requests\Administrator\Pages\StoreUserRequest;
-use Smart6ate\Lerova\App\Http\Requests\Administrator\Pages\UpdateUserRoleRequest;
+use Illuminate\Support\Facades\Session;
 
 
 class UsersController extends Controller
@@ -50,6 +51,8 @@ class UsersController extends Controller
             $user->roles()->attach($role);
         }
 
+        Session::flash('success', 'User successfully created!');
+
         return redirect()->route('lerova.administrator.users.index');
     }
 
@@ -69,6 +72,9 @@ class UsersController extends Controller
             $user->roles()->sync($request->role);
         }
 
+        Session::flash('success', 'User Role successfully updated!');
+
+
         return redirect()->route('lerova.administrator.users.index');
     }
 
@@ -80,6 +86,9 @@ class UsersController extends Controller
         {
             $user->delete();
         }
+
+        Session::flash('success', 'User successfully archived!');
+
 
         return redirect()->back();
 

@@ -95,7 +95,7 @@
 
                                                 <button type="submit"
                                                         style="padding: 0; border: none; background: none; ">
-                                                    <i style="color:darkgray;" class="fa fa-trashva"
+                                                    <i style="color:darkgray;" class="fa fa-trash"
                                                        aria-hidden="true"></i>
                                                 </button>
 
@@ -119,9 +119,15 @@
 
                 <div class="col-md-8 col-md-offset-2">
 
-                    <div class="alert alert-warning">
-                        <span class="pull-right label label-warning">Info</span> No Members available
+                    <div class="panel panel-danger">
+                        <div class="panel-body">
+
+                            <span class="pull-right label label-danger">Info</span> No
+                            Members available
+                        </div>
+
                     </div>
+
 
                 </div>
 
