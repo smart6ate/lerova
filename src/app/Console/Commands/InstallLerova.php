@@ -55,8 +55,8 @@ class InstallLerova extends Command
 
                 $password = $this->secret('Set your password');
 
-                File::cleanDirectory( base_path('app/Http/Controllers'));
-                File::cleanDirectory( base_path('resources'));
+                File::cleanDirectory( base_path('app/Http/Controllers/lerova'));
+                File::cleanDirectory( base_path('resources/views/lerova'));
 
                 $this->call('vendor:publish', array('--tag' => 'lerova-install', '--force' => true));
 

@@ -3,6 +3,7 @@
 
 namespace Smart6ate\Lerova\App\Console\Commands;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -55,17 +56,24 @@ class RemoveLerova extends Command
                 File::deleteDirectory(base_path('app/Http/Requests/Lerova'));
                 File::deleteDirectory(base_path('app/Traits/Lerova'));
 
-                File::deleteDirectory(base_path('data'));
+
+                if(!File::exists(base_path('lerova'))) {
+                    File::makeDirectory(base_path('lerova'));
+                }
+
+                File::move(base_path('data'), base_path('lerova/backup-'. Carbon::now()));
+
                 File::cleanDirectory(base_path('database'));
+                File::deleteDirectory(base_path('data'));
 
-                File::cleanDirectory(base_path('resources/views/lerova'));
-
+                File::deleteDirectory(base_path('resources/views/lerova'));
                 File::deleteDirectory(base_path('routes/lerova'));
-                File::cleanDirectory(base_path('public/assets'));
+                File::deleteDirectory(base_path('public/assets'));
 
                 File::cleanDirectory(base_path('tests'));
 
                 File::delete(config_path('lerova.php'));
+                File::delete(base_path('app/Http/Controllers/RSSController.php'));
 
                 /** Overrides */
                 $this->call('vendor:publish', array('--tag' => 'lerova-remove', '--force' => true));

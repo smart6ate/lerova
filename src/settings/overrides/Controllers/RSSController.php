@@ -18,7 +18,7 @@ class RSSController extends Controller
 
         if (!$feed->isCached())
         {
-            $posts = Post::published()->orderBy('created_at', 'desc')->take(20)->get();
+            $posts = Blog::published()->orderBy('created_at', 'desc')->take(20)->get();
 
             $feed->title = 'smartgate AG';
             $feed->description = 'Agile App-Lösungen für Marketing & Verkauf';
