@@ -24,7 +24,7 @@
                             style="margin-right: 15px;" class="fa fa-newspaper-o" aria-hidden="true"></i>
                     Create Posts</a></li>
         @endif
-        @if(config('lerova.core.blog.create_posts'))
+        @if(config('lerova.core.blog.create_images'))
 
             <li class="list-group-item @if(Route::currentRouteName() === 'lerova.blog.images.create') active @endif"><a
                         style="color:black;"

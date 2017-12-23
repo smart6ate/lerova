@@ -30,13 +30,16 @@ class BlogController extends Controller
             $blog->published = true;
             $blog->save();
 
-            Session::flash('warning', 'Please fill out all required fields!');
+            Session::flash('success', 'Member successfully published!');
+            return redirect()->back();
+
 
         }
 
-        Session::flash('success', 'Entry successfully published!');
+        Session::flash('warning', 'Please fill out all required fields!');
 
         return redirect()->back();
+
     }
 
     public function withdraw(Blog $blog)

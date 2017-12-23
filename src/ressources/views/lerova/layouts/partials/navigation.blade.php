@@ -44,7 +44,15 @@
                     @endif
 
 
+                    @if(!config('lerova.settings.status'))
+                    @role('administrator')
+                    @endif
+
                     <li><a href="{{ route('lerova.settings.index') }}">Settings</a></li>
+
+                    @if(!config('lerova.settings.status'))
+                    @endrole
+                    @endif
 
                 @endif
 

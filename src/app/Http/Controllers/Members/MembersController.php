@@ -84,14 +84,15 @@ class MembersController extends Controller
             $member->published = true;
             $member->save();
 
-            Session::flash('warning', 'Please fill out all required fields!');
+            Session::flash('success', 'Member successfully published!');
+            return redirect()->back();
 
         }
 
-        Session::flash('success', 'Member successfully published!');
-
+        Session::flash('warning', 'Please fill out all required fields!');
 
         return redirect()->back();
+
     }
 
     public function withdraw(Member $member)

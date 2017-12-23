@@ -25,6 +25,7 @@ return [
 
     'settings' =>
         [
+            'status' => config('lerova.settings.status', false),
             'general' => config('lerova.settings.general', false),
             'company' => config('lerova.settings.company', false),
             'contact_form' => config('lerova.settings.contact_form', false),

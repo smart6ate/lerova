@@ -132,7 +132,11 @@
                     </div>
                     @endif
 
-                    <div class="col-md-4">
+                        @if(!config('lerova.settings.status'))
+                        @role('administrator')
+                        @endif
+
+                        <div class="col-md-4">
 
                         <a href="{{ route('lerova.settings.index', Auth()->user()) }}">
                             <div class="panel panel-default">
@@ -144,7 +148,11 @@
                             </div>
                         </a>
 
-                    </div>
+                         </div>
+
+                        @if(!config('lerova.settings.status'))
+                        @endrole
+                        @endif
 
                     <div class="col-md-4">
 

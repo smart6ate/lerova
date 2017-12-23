@@ -46,7 +46,12 @@ class Blog extends Model
         return str_slug($this->title);
     }
 
-    public function getFontAwesomeIcon()
+    public function externalUrl()
+    {
+        return route('frontend.posts.show', [$this->uuid, $this->slug]);
+    }
+
+        public function getFontAwesomeIcon()
     {
         if($this->type === 'posts')
         {

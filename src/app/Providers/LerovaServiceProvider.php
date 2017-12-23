@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Lerova\Notification;
 
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -122,9 +123,9 @@ class LerovaServiceProvider extends ServiceProvider
 
         }
 
-        if(config('lerova.core.company'))
+        if(config('lerova.core.settings.company'))
         {
-            View::composer('*', function($view)
+            \View::composer('*', function($view)
             {
                 $company = json_decode(File::get(base_path('data/company.json')));
 
@@ -133,9 +134,17 @@ class LerovaServiceProvider extends ServiceProvider
             });
         }
 
-        if(config('lerova.core.links'))
+
+            \View::composer('*', function($view)
+            {
+                $analytics = json_decode(File::get(base_path('data/analytics.json')));
+                $view->with(compact('analytics'));
+            });
+
+
+        if(config('lerova.core.settings.links'))
         {
-            View::composer('*', function($view)
+            \View::composer('*', function($view)
             {
                 $links = json_decode(File::get(base_path('data/links.json')));
                 $view->with(compact('links'));

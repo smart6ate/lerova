@@ -9,6 +9,10 @@ class SettingsController extends Controller
 
     public function __construct()
     {
+        if(!config('lerova.settings.status'))
+        {
+            $this->middleware('role:administrator');
+        }
 
     }
 

@@ -13,6 +13,8 @@ return [
 
     'settings' =>
         [
+            'status' => false,
+
             'general' => false,
             'company' => false,
             'contact_form' => false,
@@ -28,7 +30,7 @@ return [
             'privacy' => false,
         ],
 
-    'blogs' =>
+    'blog' =>
 
     [
         'create_posts' => false,
