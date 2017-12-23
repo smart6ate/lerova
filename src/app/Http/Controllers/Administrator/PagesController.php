@@ -41,7 +41,7 @@ class PagesController extends Controller
             'description' => config('lerova.core.pages.description'),
             'image' => config('lerova.core.pages.image'),
             'title' => $request->title,
-            'keywords' => json_encode($parts = explode(' ', $request->title)),
+            'keywords' => $parts = explode(' ', $request->title),
         ]);
 
 

@@ -8,10 +8,10 @@
 
             <div class="col-md-10 col-md-offset-2">
 
-                <h2>Blog Entries</h2>
+                <h2>Blogs</h2>
 
                 <ol style="padding: 0; background-color: transparent" class="breadcrumb">
-                    <li class="active">Blog Entries</li>
+                    <li class="active">Blogs</li>
                 </ol>
 
                 <hr>

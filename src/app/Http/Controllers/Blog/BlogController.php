@@ -29,6 +29,9 @@ class BlogController extends Controller
         {
             $blog->published = true;
             $blog->save();
+
+            Session::flash('warning', 'Please fill out all required fields!');
+
         }
 
         Session::flash('success', 'Entry successfully published!');

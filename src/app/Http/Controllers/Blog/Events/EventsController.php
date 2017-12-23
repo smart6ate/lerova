@@ -17,6 +17,10 @@ class EventsController extends Controller
         {
             $this->middleware('role:developer');
         }
+
+        if (!config('lerova.blog.create_events')) {
+            $this->middleware('role:developer');
+        }
         $this->middleware('role:administrator', ['only' => ['delete' ]]);
 
     }

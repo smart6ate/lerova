@@ -2,7 +2,7 @@
 
 return [
 
-    'version' => config('lerova.version', 'v1.1.0'),
+    'version' => config('lerova.version', 'v1.1.2'),
 
     'meta' =>
         [
@@ -41,28 +41,70 @@ return [
         ],
 
     'pages' =>
-    [
-        'type' => config('lerova.pages.type', 'website'),
-        'language' => config('lerova.pages.language', 'de_DE'),
-        'description' => config('lerova.pages.descritpion', 'Cupcake ipsum dolor sit amet bonbon sweet cupcake. Bonbon pudding marshmallow cupcake ice cream.'),
-        'image' => config('lerova.pages.image', 'https://ucarecdn.com/ca56f6b0-c660-4628-b492-e6a968ae468e/'),
-    ],
+        [
+            'type' => config('lerova.pages.type', 'website'),
+            'language' => config('lerova.pages.language', 'de_DE'),
+            'description' => config('lerova.pages.descritpion', 'Cupcake ipsum dolor sit amet bonbon sweet cupcake. Bonbon pudding marshmallow cupcake ice cream.'),
+            'image' => config('lerova.pages.image', 'https://ucarecdn.com/ca56f6b0-c660-4628-b492-e6a968ae468e/'),
+
+            'image_ratio' => config('lerova.pages.image_ratio', '4:3'),
+            'image_shrink' => config('lerova.pages.image_shrink', '2500x2500'),
+
+        ],
 
 
     'blog' =>
         [
+
+            'create_posts' => config('lerova.blog.create_posts', false),
+            'create_images' => config('lerova.blog.create_images', false),
+            'create_events' => config('lerova.blog.create_events', false),
+            'create_links' => config('lerova.blog.create_links', false),
+
             'language' => config('lerova.blog.language', 'de_DE'),
             'title_max' => config('lerova.blog.title_max', 60),
             'teaser_max' => config('lerova.blog.title_max', 300),
+
+            'image_ratio' => config('lerova.blog.image_ratio', '4:3'),
+            'image_shrink' => config('lerova.blog.image_shrink', '2500x2500'),
+
         ],
 
 
-    'uploadcare' =>
+    'members' =>
         [
-            'image_ratio' => config('lerova.uploadcare.image_ratio', '4:3'),
-            'image_shrink' => config('lerova.uploadcare.image_shrink', '2500x2500'),
+            'image_ratio' => config('lerova.members.image_ratio', ''),
+            'image_shrink' => config('lerova.members.image_shrink', '2500x2500'),
         ],
 
+    'about' =>
+        [
+            'image_ratio' => config('lerova.about.image_ratio', ''),
+            'image_shrink' => config('lerova.about.image_shrink', '2500x2500'),
+
+        ],
+
+
+    'form' =>
+        [
+            'image_ratio' => config('lerova.form.image_ratio', ''),
+            'image_shrink' => config('lerova.form.image_shrink', '2500x2500'),
+
+        ],
+
+    'imprint' =>
+        [
+            'image_ratio' => config('lerova.imprint.image_ratio', ''),
+            'image_shrink' => config('lerova.imprint.image_shrink', '2500x2500'),
+
+        ],
+
+    'privacy' =>
+        [
+            'image_ratio' => config('lerova.privacy.image_ratio', ''),
+            'image_shrink' => config('lerova.privacy.image_shrink', '2500x2500'),
+
+        ],
 
     'imperavi' => [
 

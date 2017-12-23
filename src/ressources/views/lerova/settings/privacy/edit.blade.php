@@ -39,7 +39,7 @@
 
                         <div class="col-md-12">
 
-                            <input type="text" id="title" name="title" class="form-control" value="{{ $privacy->title }}"
+                            <input title="title" type="text" id="title" name="title" class="form-control" value="{{ $privacy->title }}"
                                       required>
 
                             @if ($errors->has('title'))
@@ -75,6 +75,27 @@
                     </div>
 
 
+                    <h5>Images</h5>
+                    <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
+
+                        <div class="col-md-12">
+
+                            <input style="" id="image" value="{{ $privacy->image }}" name="image" type="hidden"
+                                   data-public-key="{{env('UPLOADCARE_PUBLIC_KEY')}}" data-images-only
+                                   data-crop="{{config('lerova.core.privacy.image_ratio')}}" data-clearable
+                                   data-image-shrink="{{config('lerova.core.privacy.image_shrink')}}"
+                                   role="uploadcare-uploader" class="form-control" required>
+
+                            @if ($errors->has('image'))
+                                <span class="help-block">
+                                                            <strong>{{ $errors->first('image') }}</strong>
+                                                        </span>
+                            @endif
+                        </div>
+                    </div>
+
+
+
                     <div class="form-group">
 
 
@@ -102,6 +123,7 @@
 
 @section('scripts')
 
+    @include('lerova.layouts.partials.scripts.uploadcare')
     @include('lerova.layouts.partials.scripts.redactor')
     @include('lerova.layouts.components.redactor')
 

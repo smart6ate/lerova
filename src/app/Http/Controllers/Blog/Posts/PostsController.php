@@ -17,6 +17,10 @@ class PostsController extends Controller
             $this->middleware('role:developer');
         }
 
+        if (!config('lerova.blog.create_posts')) {
+            $this->middleware('role:developer');
+        }
+
         $this->middleware('role:administrator', ['only' => ['delete']]);
     }
 

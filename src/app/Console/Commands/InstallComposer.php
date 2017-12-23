@@ -71,6 +71,11 @@ class InstallComposer extends Command
 
             $this->info('You have successfully installed Lerovas Composer Dependencies ');
         }
+        else
+        {
+            $this->info('Before you can INSTALL Lerovas Composer Dependences, you have to INSTALL Lerova using the command: "php artisan lerova:install"');
+
+        }
 
         /** End Install Composer Dependencies */
 

@@ -20,9 +20,7 @@ class AboutController extends Controller
 
     public function edit()
     {
-        $json = File::get(base_path('data/about.json'));
-
-        $about = json_decode($json);
+        $about = json_decode(File::get(base_path('data/about.json')));
 
         return view('lerova.about.edit', compact('about'));
     }
@@ -32,7 +30,7 @@ class AboutController extends Controller
         $this->validate($request, [
             'title' => 'required|string',
             'body' => 'required',
-            'image' => 'required|url',
+            'image' => 'nullable|url',
         ]);
 
         $about = array(

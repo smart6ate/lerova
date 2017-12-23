@@ -17,6 +17,10 @@ class LinksController extends Controller
         {
             $this->middleware('role:developer');
         }
+
+        if (!config('lerova.blog.create_links')) {
+            $this->middleware('role:developer');
+        }
     }
 
 

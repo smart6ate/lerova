@@ -11,7 +11,6 @@ return [
             'notifications' => false
         ],
 
-
     'settings' =>
         [
             'general' => false,
@@ -29,6 +28,14 @@ return [
             'privacy' => false,
         ],
 
+    'blogs' =>
+
+    [
+        'create_posts' => false,
+        'create_images' => false,
+        'create_events' => false,
+        'create_links' => false,
+    ],
 
     'imperavi' => [
 

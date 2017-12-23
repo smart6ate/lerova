@@ -30,7 +30,7 @@ class UpdateLinksRequest extends FormRequest
     public function rules()
     {
         return [
-            'page_id' => 'required|exists:meta,id',
+            'page_id' => 'required|exists:pages,id',
             'title' => 'required|max:' . config('lerova.core.blog.title_max'),
             'url' => 'required|url',
             'tags' => 'required|array',

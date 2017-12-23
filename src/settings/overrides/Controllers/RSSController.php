@@ -21,9 +21,9 @@ class RSSController extends Controller
             $posts = Blog::published()->orderBy('created_at', 'desc')->take(20)->get();
 
             $feed->title = 'smartgate AG';
-            $feed->description = 'Agile App-Lösungen für Marketing & Verkauf';
+            $feed->description = 'Wir kreieren Apps, die Menschen verbinden';
             $feed->logo = 'https://ucarecdn.com/8139a873-bda6-45a5-8138-208152b4f970/';
-            $feed->link = route('frontend.feed.index');
+            $feed->link = route('frontend.rss.index');
             $feed->setDateFormat('datetime');
 
             $feed->pubdate = Carbon::now();
@@ -36,7 +36,7 @@ class RSSController extends Controller
                 $feed->add(
                     $post->title,
                     $post->author,
-                    $post->url,
+                    $post->externalUrl(),
                     $post->created_at,
                     $post->teaser,
                     $post->body);

@@ -83,6 +83,9 @@ class MembersController extends Controller
         {
             $member->published = true;
             $member->save();
+
+            Session::flash('warning', 'Please fill out all required fields!');
+
         }
 
         Session::flash('success', 'Member successfully published!');

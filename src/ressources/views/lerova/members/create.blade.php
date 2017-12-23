@@ -54,7 +54,7 @@
                             <textarea rows="2" style="resize: none;" id="teaser"
                                       placeholder="Teaser - Max. {{ config('lerova.core.blog.teaser_max') }} Characters"
                                       name="teaser"
-                                      class="form-control" required>{{ old('teaser') }}</textarea>
+                                      class="form-control">{{ old('teaser') }}</textarea>
 
                             @if ($errors->has('teaser'))
                                 <span class="help-block">
@@ -70,7 +70,7 @@
 
                         <div class="col-md-12">
                             <textarea id="body" placeholder="Body" name="body"
-                                      class="form-control" required>{{ old('body') }}</textarea>
+                                      class="form-control">{{ old('body') }}</textarea>
 
                             @if ($errors->has('body'))
                                 <span class="help-block">
@@ -87,7 +87,7 @@
 
                         <div class="col-md-12">
 
-                            <select title="tags" style="width:100%;" id="tags" name="tags[]" class="form-control" multiple required>
+                            <select title="tags" style="width:100%;" id="tags" name="tags[]" class="form-control" multiple>
                                 @if (is_array(old('tags')))
                                     @foreach (old('tags') as $keyword)
                                         <option value="{{ $keyword }}" selected="selected">{{ $keyword }}</option>
@@ -111,8 +111,8 @@
 
                             <input style="" id="image" value="{{ old('image') }}" name="image" type="hidden"
                                    data-public-key="{{env('UPLOADCARE_PUBLIC_KEY')}}" data-images-only
-                                   data-crop="{{config('lerova.core.uploadcare.image_ratio')}}" data-clearable
-                                   data-image-shrink="{{config('lerova.core.uploadcare.image_shrink')}}"
+                                   data-crop="{{config('lerova.core.members.image_ratio')}}" data-clearable
+                                   data-image-shrink="{{config('lerova.core.members.image_shrink')}}"
                                    role="uploadcare-uploader" class="form-control" required>
 
                             @if ($errors->has('image'))

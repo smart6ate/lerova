@@ -122,6 +122,27 @@ class LerovaServiceProvider extends ServiceProvider
 
         }
 
+        if(config('lerova.core.company'))
+        {
+            View::composer('*', function($view)
+            {
+                $company = json_decode(File::get(base_path('data/company.json')));
+
+                $view->with(compact('company'));
+
+            });
+        }
+
+        if(config('lerova.core.links'))
+        {
+            View::composer('*', function($view)
+            {
+                $links = json_decode(File::get(base_path('data/links.json')));
+                $view->with(compact('links'));
+            });
+        }
+
+
         $this->app->booted(function () {
             $schedule = app(Schedule::class);
             $schedule->command('sitemap:generate')->daily();

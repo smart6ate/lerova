@@ -107,7 +107,7 @@
                             <div class="col-md-10 col-md-offset-1">
 
                                 <input style="" id="image" value="{{ $page->image }}" name="image" type="hidden" data-public-key="{{env('UPLOADCARE_PUBLIC_KEY')}}" data-images-only
-                                       data-image-shrink="{{config('lerova.core.uploadcare.image_shrink')}}" data-crop="{{config('lerova.core.uploadcare.image_ratio')}}" data-clearable data-image-shrink
+                                       data-image-shrink="{{config('lerova.core.pages.image_shrink')}}" data-crop="{{config('lerova.core.pages.image_ratio')}}" data-clearable data-image-shrink
                                        role="uploadcare-uploader" class="form-control" required>
 
                                 @if ($errors->has('image'))

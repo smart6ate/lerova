@@ -32,13 +32,15 @@ class ImprintController extends Controller
     {
         $this->validate($request, [
             'title' => 'required|string',
-            'body' => 'required'
+            'body' => 'required',
+            'image' => 'nullable|url'
         ]);
 
         $imprint = array(
             'title' => request('title'),
             'body' => request('body'),
-            'updated_at' => Carbon::now(),
+            'image' => request('image'),
+            'updated_at' => Carbon::now()->timestamp,
 
         );
 

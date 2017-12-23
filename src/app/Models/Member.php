@@ -26,6 +26,9 @@ class Member extends Model
     public function validate()
     {
             $value = $this->getAttributes();;
+            unset($value['teaser']);
+            unset($value['body']);
+            unset($value['tags']);
             unset($value['deleted_at']);
             if(!in_array(null, $value, true)) { return true; }
             return false;

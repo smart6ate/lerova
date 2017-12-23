@@ -112,8 +112,8 @@
 
                             <input style="" id="image" value="{{ $member->image }}" name="image" type="hidden"
                                    data-public-key="{{env('UPLOADCARE_PUBLIC_KEY')}}" data-images-only
-                                   data-crop="{{config('lerova.core.uploadcare.image_ratio')}}" data-clearable
-                                   data-image-shrink="{{config('lerova.core.uploadcare.image_shrink')}}"
+                                   data-crop="{{config('lerova.core.members.image_ratio')}}" data-clearable
+                                   data-image-shrink="{{config('lerova.core.members.image_shrink')}}"
                                    role="uploadcare-uploader" class="form-control" required>
 
                             @if ($errors->has('image'))

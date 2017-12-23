@@ -52,7 +52,7 @@
                     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
 
                         <div class="col-md-12">
-                            <input type="text" id="title" placeholder="Title - Max. 60 Characters" name="title"
+                            <input type="text" id="title" placeholder="Title - Max. {{ config('lerova.core.blog.title_max') }} Characters" name="title"
                                    value="{{ old('title') }}"
                                    class="form-control" required autofocus>
 
@@ -111,8 +111,8 @@
 
                             <input style="" id="image" value="{{ old('image') }}" name="image" type="hidden"
                                    data-public-key="{{env('UPLOADCARE_PUBLIC_KEY')}}" data-images-only
-                                   data-crop="{{config('lerova.core.uploadcare.image_ratio')}}" data-clearable
-                                   data-image-shrink="{{config('lerova.uploadcare.image_shrink')}}"
+                                   data-crop="{{config('lerova.core.blog.image_ratio')}}" data-clearable
+                                   data-image-shrink="{{config('lerova.blog.image_shrink')}}"
                                    role="uploadcare-uploader" class="form-control" required>
 
                             @if ($errors->has('image'))

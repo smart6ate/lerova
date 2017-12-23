@@ -29,9 +29,9 @@ class FormController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'title' => 'string',
-            'image' => 'url',
-            'body' => ''
+            'title' => 'nullablestring',
+            'image' => 'nullable|url',
+            'body' => 'nullable|string'
         ]);
 
         $form = array(
