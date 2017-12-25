@@ -17,6 +17,7 @@ return [
     'modules' =>
         [
             'blog' => config('lerova.modules.blog', false),
+
             'gallery' => config('lerova.modules.gallery', false),
             'about' => config('lerova.modules.about', false),
             'members' => config('lerova.modules.members', false),

@@ -18,7 +18,7 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::orderBy('updated_at','desc')->get();
 
         return view('lerova.blog.index', compact('blogs'));
     }

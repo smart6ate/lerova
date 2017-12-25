@@ -4,7 +4,6 @@
 
     <style>
 
-
         hr
         {
             color: black;
@@ -132,9 +131,7 @@
                     </div>
                     @endif
 
-                        @if(!config('lerova.settings.status'))
-                        @role('administrator')
-                        @endif
+                        @if(config('lerova.settings.status'))
 
                         <div class="col-md-4">
 
@@ -150,8 +147,6 @@
 
                          </div>
 
-                        @if(!config('lerova.settings.status'))
-                        @endrole
                         @endif
 
                     <div class="col-md-4">

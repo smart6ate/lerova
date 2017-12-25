@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Lerova\Magicable;
 use App\Traits\Lerova\Orderable;
 use App\Traits\Lerova\Roleable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use SoftDeletes, Notifiable, Roleable, Orderable;
+    use SoftDeletes, Notifiable, Roleable, Orderable, Magicable;
 
     /**
      * The attributes that are mass assignable.

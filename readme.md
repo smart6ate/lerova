@@ -1,14 +1,6 @@
 ## About Lerova
 
-Lerova is an easy-to-use content manager for Laravel
-
-## Components
-
-Lerova is using the following components to make writing your blog a breeze
-
-* [Uploadcare](https://uploadcare.com)
-
-* [WYSIWYG - Imperavi - Redactor](https://imperavi.com)
+Lerova is an easy-to-use Content Marketing Tool for Creators!
 
 
 ## Installation
@@ -21,12 +13,6 @@ composer require smart6ate/lerova
 php artisan lerova:install
 
 ```
-
-### Adjust your config/lerova.php file
-### Adjust your .env file
-### Implement your Frontend your
-
-
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within Laravel, please send us an e-mail: info@smartgate.ch. All security vulnerabilities will be promptly addressed.

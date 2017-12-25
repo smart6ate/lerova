@@ -16,7 +16,6 @@ class NotificationsController extends Controller
         }
 
         $this->middleware('role:administrator', ['only' => ['delete' ]]);
-
     }
 
     public function index()
@@ -65,9 +64,7 @@ class NotificationsController extends Controller
 
         Session::flash('success', 'Notification successfully deleted!');
 
-
         return redirect()->route('lerova.notifications.archived');
-
     }
 
 }

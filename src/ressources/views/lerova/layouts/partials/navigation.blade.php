@@ -44,14 +44,8 @@
                     @endif
 
 
-                    @if(!config('lerova.settings.status'))
-                    @role('administrator')
-                    @endif
-
+                    @if(config('lerova.settings.status'))
                     <li><a href="{{ route('lerova.settings.index') }}">Settings</a></li>
-
-                    @if(!config('lerova.settings.status'))
-                    @endrole
                     @endif
 
                 @endif
@@ -63,7 +57,7 @@
             <ul class="nav navbar-nav navbar-right">
 
                     @guest
-                    <li><a href="{{ route('login') }}">Anmelden</a></li>
+                    <li><a href="{{ route('login.magic') }}">Login</a></li>
 
                     @else
 

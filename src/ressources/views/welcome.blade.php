@@ -71,7 +71,7 @@
                     @auth
                         <a href="{{ route('lerova.dashboard.index') }}">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login.magic') }}">Login</a>
                        {{-- <a href="{{ route('register') }}">Register</a>--}}
                     @endauth
                 </div>

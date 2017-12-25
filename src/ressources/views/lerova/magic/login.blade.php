@@ -5,16 +5,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+                <div class="panel-heading">Login</div>
 
                 <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('login.magic') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -23,7 +17,7 @@
 --}}
 
                             <div class="col-md-8 col-md-offset-2">
-                                <input title="email" id="email" placeholder="E-Mail Address" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input title="E-Mail Address" id="email" type="email" placeholder="E-Mail Address" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -33,13 +27,32 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-2">
-                                <button type="submit" class="btn btn-block btn-primary">
-                                    Send Password Reset Link
-                                </button>
+
+              {{--          <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                    </label>
+                                </div>
                             </div>
                         </div>
+--}}
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-md-offset-2">
+                                <button dusk="login-button" type="submit" class="btn btn-block btn-primary">
+                                  Send Magic Link
+                                </button>
+
+                                <a href="{{ route('login') }}" dusk="login-button" type="submit" class="btn btn-block btn-link">
+                                    Login with password instead
+                                </a>
+
+                            </div>
+                        </div>
+
+
                     </form>
                 </div>
             </div>

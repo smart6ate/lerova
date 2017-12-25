@@ -111,28 +111,30 @@ class LerovaServiceProvider extends ServiceProvider
         ], 'lerova-remove');
 
 
-        if(Schema::hasTable('notifications'))
-        {
-          \View::composer('*', function($view)
-          {
-              $count_notifications = Notification::all()->count();
+        if (File::exists(config_path('lerova/composer.php'))) {
 
-              $view->with(compact('count_notifications'));
-
-          });
-
-        }
-
-        if(config('lerova.core.settings.company'))
-        {
-            \View::composer('*', function($view)
+            if(Schema::hasTable('notifications'))
             {
-                $company = json_decode(File::get(base_path('data/company.json')));
+                \View::composer('*', function($view)
+                {
+                    $count_notifications = Notification::all()->count();
 
-                $view->with(compact('company'));
+                    $view->with(compact('count_notifications'));
 
-            });
-        }
+                });
+
+            }
+
+            if(config('lerova.core.settings.company'))
+            {
+                \View::composer('*', function($view)
+                {
+                    $company = json_decode(File::get(base_path('data/company.json')));
+
+                    $view->with(compact('company'));
+
+                });
+            }
 
 
             \View::composer('*', function($view)
@@ -142,20 +144,25 @@ class LerovaServiceProvider extends ServiceProvider
             });
 
 
-        if(config('lerova.core.settings.links'))
-        {
-            \View::composer('*', function($view)
+            if(config('lerova.core.settings.links'))
             {
-                $links = json_decode(File::get(base_path('data/links.json')));
-                $view->with(compact('links'));
+                \View::composer('*', function($view)
+                {
+                    $links = json_decode(File::get(base_path('data/links.json')));
+                    $view->with(compact('links'));
+                });
+            }
+
+
+            $this->app->booted(function () {
+                $schedule = app(Schedule::class);
+                $schedule->command('sitemap:generate')->daily();
+                $schedule->command('auth:clear-tokens')->daily();
+
             });
         }
 
 
-        $this->app->booted(function () {
-            $schedule = app(Schedule::class);
-            $schedule->command('sitemap:generate')->daily();
-        });
 
 
     }
