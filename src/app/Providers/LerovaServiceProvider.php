@@ -2,6 +2,7 @@
 
 namespace Smart6ate\Lerova\App\Providers;
 
+use App\Providers\Lerova\RoleServiceProvider;
 use Carbon\Carbon;
 
 use App\Models\Lerova\Notification;
@@ -11,13 +12,12 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
-use Smart6ate\Lerova\App\Console\Commands\GenerateSitemap;
-use Smart6ate\Lerova\App\Console\Commands\InstallComposer;
-use Smart6ate\Lerova\App\Console\Commands\InstallLerova;
-use Smart6ate\Lerova\App\Console\Commands\RemoveComposer;
-use Smart6ate\Lerova\App\Console\Commands\RemoveLerova;
-use Smart6ate\Lerova\App\Console\Commands\ResetLerova;
-use Smart6ate\Lerova\App\Console\Commands\UpdateLerova;
+use Smart6ate\Lerova\App\Console\Commands\ComposerInstall;
+use Smart6ate\Lerova\App\Console\Commands\LerovaInstall;
+use Smart6ate\Lerova\App\Console\Commands\ComposerRemove;
+use Smart6ate\Lerova\App\Console\Commands\LerovaRemove;
+use Smart6ate\Lerova\App\Console\Commands\LerovaReset;
+use Smart6ate\Lerova\App\Console\Commands\LerovaUpdate;
 
 class LerovaServiceProvider extends ServiceProvider
 {
@@ -32,46 +32,28 @@ class LerovaServiceProvider extends ServiceProvider
         Carbon::setLocale('de');
         setlocale (LC_TIME, 'de_DE');
 
-        $this->commands([InstallLerova::class]);
-        $this->commands([InstallComposer::class]);
-        $this->commands([UpdateLerova::class]);
-        $this->commands([RemoveLerova::class]);
-        $this->commands([RemoveComposer::class]);
-        $this->commands([ResetLerova::class]);
-        $this->commands([GenerateSitemap::class]);
-
-        /** Register Core */
-        $this->app->register(
-            'Smart6ate\Lerova\App\Providers\RoleServiceProvider'
-        );
+        $this->commands([ComposerInstall::class]);
+        $this->commands([ComposerRemove::class]);
+        $this->commands([LerovaInstall::class]);
+        $this->commands([LerovaUpdate::class]);
+        $this->commands([LerovaReset::class]);
+        $this->commands([LerovaRemove::class]);
 
         /* Install Lerova */
         $this->publishes([
-            __DIR__ . '/../../config/lerova/' => config_path('lerova/'),
             __DIR__ . '/../../config/lerova.php' => config_path('lerova.php'),
-
-            __DIR__ . '/../../app/Models/' => base_path('app/Models/Lerova/'),
-            __DIR__ . '/../../app/Http/Controllers/' => base_path('app/Http/Controllers/Lerova/'),
-            __DIR__ . '/../../app/Http/Middleware/' => base_path('app/Http/Middleware/Lerova/'),
-            __DIR__ . '/../../app/Http/Requests/' => base_path('app/Http/Requests/Lerova/'),
-            __DIR__ . '/../../app/Traits/' => base_path('app/Traits/Lerova/'),
-
-            __DIR__.'/../../database/' => base_path('database'),
-
-            __DIR__.'/../../ressources/views' => base_path('resources/views'),
-
-            __DIR__.'/../../routes/' => base_path('routes'),
-
-            __DIR__.'/../../public/' => public_path('assets'),
-
-            __DIR__.'/../../tests' => base_path('tests'),
+            __DIR__.'/../../routes/web.php' => base_path('routes/web.php'),
 
             __DIR__.'/../../data/' => base_path('data'),
 
-            __DIR__ . '/../../settings/overrides/Models/' => base_path('app'),
-            __DIR__ . '/../../settings/overrides/Controllers/' => base_path('app/Http/Controllers'),
-            __DIR__ . '/../../settings/overrides/Middleware/' => base_path('app/Http/Middleware'),
-            __DIR__ . '/../../settings/overrides/Providers/' => base_path('app/Providers'),
+            __DIR__ . '/../../app/Models/User.php' => base_path('app/User.php'),
+
+            __DIR__ . '/../../ressources/views/welcome.blade.php' => base_path('resources/views/welcome.blade.php'),
+
+            __DIR__ . '/../../app/Http/Controllers/RSSController.php' => base_path('app/Http/Controllers/RSSController.php'),
+            __DIR__ . '/../../app/Http/Middleware/RedirectIfAuthenticated.php' => base_path('app/Http/Middleware/RedirectIfAuthenticated.php'),
+
+            __DIR__ . '/../../app/Providers/AuthServiceProvider.php' => base_path('app/Providers/AuthServiceProvider.php'),
 
         ], 'lerova-install');
 
@@ -79,20 +61,33 @@ class LerovaServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../config/lerova/' => config_path('lerova/'),
 
-            __DIR__ . '/../../app/Models/' => base_path('app/Models/Lerova/'),
-            __DIR__ . '/../../app/Http/Controllers/' => base_path('app/Http/Controllers/Lerova/'),
-            __DIR__ . '/../../app/Http/Middleware/' => base_path('app/Http/Middleware/Lerova/'),
-            __DIR__ . '/../../app/Http/Requests/' => base_path('app/Http/Requests/Lerova/'),
+            __DIR__ . '/../../app/Console/Commands/Lerova' => base_path('app/Console/Commands/Lerova/'),
+
+            __DIR__ . '/../../app/Models/Lerova/' => base_path('app/Models/Lerova/'),
+            __DIR__ . '/../../app/Notifications/' => base_path('app/Notifications/Lerova/'),
+
+            __DIR__ . '/../../app/Http/Controllers/Lerova/' => base_path('app/Http/Controllers/Lerova/'),
+            __DIR__ . '/../../app/Http/Controllers/Auth/' => base_path('app/Http/Controllers/Auth/'),
+            __DIR__ . '/../../app/Http/Middleware/Lerova/' => base_path('app/Http/Middleware/Lerova/'),
+            __DIR__ . '/../../app/Http/Requests/Lerova/' => base_path('app/Http/Requests/Lerova/'),
+
+            __DIR__ . '/../../app/Policies/' => base_path('app/Policies/Lerova/'),
+            __DIR__ . '/../../app/Providers/Lerova/' => base_path('app/Providers/Lerova/'),
             __DIR__ . '/../../app/Traits/' => base_path('app/Traits/Lerova/'),
 
-
             __DIR__.'/../../database/' => base_path('database'),
-            __DIR__.'/../../ressources/views' => base_path('resources/views'),
-            __DIR__.'/../../routes/lerova/' => base_path('routes/lerova'),
+
+            __DIR__.'/../../ressources/views/lerova/' => base_path('resources/views/lerova'),
+            __DIR__.'/../../ressources/views/errors/' => base_path('resources/views/errors'),
+            __DIR__.'/../../ressources/views/email/' => base_path('resources/views/email'),
+            __DIR__.'/../../ressources/views/auth/' => base_path('resources/views/auth'),
+
             __DIR__.'/../../public/' => public_path('assets'),
-            __DIR__.'/../../tests/' => base_path('tests'),
+            __DIR__.'/../../routes/lerova/' => base_path('routes/lerova'),
 
-            __DIR__.'/../../database/' => base_path('database'),
+            __DIR__.'/../../tests/Unit' => base_path('tests/Unit/Lerova'),
+            __DIR__.'/../../tests/Feature' => base_path('tests/Feature/Lerova'),
+            __DIR__.'/../../tests/Browser' => base_path('tests/Browser/Lerova'),
 
         ], 'lerova-update');
 
@@ -105,9 +100,9 @@ class LerovaServiceProvider extends ServiceProvider
             __DIR__ . '/../../settings/default/Tests/' => base_path('tests'),
 
             __DIR__ . '/../../settings/default/Models/User.php' => base_path('app/User.php'),
-            __DIR__ . '/../../settings/default/Controllers/Auth/' => base_path('app/Http/Controllers/Auth'),
-            __DIR__ . '/../../settings/default/Middleware/' => base_path('app/Http/Middleware'),
-            __DIR__ . '/../../settings/default/Providers/' => base_path('app/Providers'),
+            __DIR__ . '/../../settings/default/Controllers/Auth/' => base_path('app/Http/Controllers/Auth/'),
+            __DIR__ . '/../../settings/default/Middleware/' => base_path('app/Http/Middleware/'),
+            __DIR__ . '/../../settings/default/Providers/' => base_path('app/Providers/'),
         ], 'lerova-remove');
 
 
@@ -154,12 +149,19 @@ class LerovaServiceProvider extends ServiceProvider
             }
 
 
-            $this->app->booted(function () {
-                $schedule = app(Schedule::class);
-                $schedule->command('sitemap:generate')->daily();
-                $schedule->command('auth:clear-tokens')->daily();
+            if (File::exists(config_path('lerova/core.php')))
+            {
+                $this->app->register(
+                    RoleServiceProvider::class
+                );
 
-            });
+                $this->app->booted(function () {
+                    $schedule = app(Schedule::class);
+                    $schedule->command('generate:sitemap')->daily();
+                    $schedule->command('auth:clear-tokens')->daily();
+
+                });
+            }
         }
 
 

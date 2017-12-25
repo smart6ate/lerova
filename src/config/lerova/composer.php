@@ -12,6 +12,7 @@ return [
     'live' =>
     [
         'spatie/laravel-sitemap',
+        'spatie/laravel-backup',
         'roumen/feed'
     ],
 

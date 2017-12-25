@@ -1,25 +1,26 @@
 <?php
 
-namespace Smart6ate\Lerova\App\Console\Commands;
+namespace App\Console\Commands\Lerova;
 
-use App\Models\Lerova\UserLoginToken;
 use Illuminate\Console\Command;
+use Spatie\Sitemap\SitemapGenerator;
 
-class ClearExpiredUserLoginTokens extends Command
+
+class GenerateSitemap extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'auth:clear-tokens';
+    protected $signature = 'generate:sitemap';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Flush expired authentication tokens';
+    protected $description = 'Generates youer personal sitemap.';
 
     /**
      * Create a new command instance.
@@ -38,6 +39,8 @@ class ClearExpiredUserLoginTokens extends Command
      */
     public function handle()
     {
-        UserLoginToken::expired()->delete();
+        SitemapGenerator::create(config('app.url'))
+            ->writeToFile(public_path('sitemap.xml'));
+
     }
 }

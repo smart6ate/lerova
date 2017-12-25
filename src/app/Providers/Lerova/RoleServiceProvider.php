@@ -1,6 +1,6 @@
 <?php
 
-namespace Smart6ate\Lerova\App\Providers;
+namespace App\Providers\Lerova;
 
 use App\Http\Middleware\Lerova\RoleMiddleware;
 use Illuminate\Support\Facades\Blade;

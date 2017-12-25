@@ -4,13 +4,11 @@
 namespace Smart6ate\Lerova\App\Console\Commands;
 
 
-use App\Models\Lerova\Role;
-use App\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 
-class RemoveComposer extends Command
+class ComposerRemove extends Command
 {
     /**
      * The name and signature of the console command.
@@ -44,10 +42,9 @@ class RemoveComposer extends Command
 
     public function handle()
     {
-        if ($this->confirm('Do you want to REMOVE the Laravel Composer Dependencies?'))
-        {
-            /** Remove Composer Dependencies */
-            if (File::exists(config_path('lerova/composer.php'))) {
+        if (File::exists(config_path('lerova/composer.php'))) {
+
+            if ($this->confirm('Remove Composer?')) {
 
                 $live = config('lerova.composer.live');
                 $dev = config('lerova.composer.dev');
@@ -56,15 +53,12 @@ class RemoveComposer extends Command
 
                 $bar = $this->output->createProgressBar($value);
 
-                if (!App::environment('production', 'staging'))
-                {
+                if (!App::environment('production', 'staging')) {
                     foreach (config('lerova.composer.dev') as $package) {
                         $bar->advance();
                         shell_exec('composer remove --dev ' . $package);
                     }
                 }
-
-
 
                 foreach (config('lerova.composer.live') as $package) {
                     $bar->advance();
@@ -74,9 +68,12 @@ class RemoveComposer extends Command
             }
             /** End Remove Composer Dependencies */
 
-            $this->info('You have successfully removed all Composer Dependencies');
+            $this->info('Successfully removed');
+        }
+        else
+        {
+            $this->info('Already removed!');
+
         }
     }
-
-
 }

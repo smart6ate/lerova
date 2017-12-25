@@ -3,27 +3,26 @@
 
 namespace Smart6ate\Lerova\App\Console\Commands;
 
-
 use App\Models\Lerova\Role;
 use App\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
-class InstallLerova extends Command
+class LerovaReset extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'lerova:install';
+    protected $signature = 'lerova:reset';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install Lerova';
+    protected $description = 'Reset Lerova';
 
     /**
      * Create a new command instance.
@@ -43,11 +42,11 @@ class InstallLerova extends Command
 
     public function handle()
     {
-        if ($this->confirm('Are you sure you want to INSTALL Lerova?'))
-        {
-            if (!File::exists(config_path('lerova/core.php')))
-            {
-                $this->info('Hey there! I would like to guide you through the Lerova installation process');
+        if (File::exists(config_path('lerova/core.php'))) {
+
+                if ($this->confirm('Ready to Set-Up the Administrator?')) {
+
+                $this->info('Hey there! I would like to guide you through the Lerova reset process');
 
                 $name = $this->ask('Can I may have your full name please?');
 
@@ -55,17 +54,12 @@ class InstallLerova extends Command
 
                 $password = $this->secret('Set your password');
 
-                File::cleanDirectory( base_path('app/Http/Controllers/lerova'));
-                File::cleanDirectory( base_path('resources/views/lerova'));
-
-                $this->call('vendor:publish', array('--tag' => 'lerova-install', '--force' => true));
-
                 $this->call('migrate:reset');
                 $this->call('migrate');
 
                 $user = User::create([
 
-                    'name'  => $name,
+                    'name' => $name,
                     'email' => $email,
                     'password' => bcrypt($password),
                 ]);
@@ -76,18 +70,20 @@ class InstallLerova extends Command
 
                 $user->roles()->attach($role);
 
+                $this->call('cache:clear');
+                $this->call('config:clear');
+                $this->call('view:clear');
+                $this->call('route:clear');
 
-                $this->info('Thank you '. $name .'You have successfully installed Lerova ' . env('LEROVA_VERSION'));
-            }
+                $this->info('Successfully installed');
+
+                }
 
 
-            else
-            {
-                $this->info('Lerova ist already installed. You have can UPDATE or REMOVE Lerova using the command: "php artisan lerova:install" or "php artisan lerova:remove');
-
-            }
-
+        } else {
+            $this->info('Install first!');
         }
+
 
     }
 }

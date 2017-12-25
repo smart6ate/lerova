@@ -10,7 +10,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 
-class InstallComposer extends Command
+class ComposerInstall extends Command
 {
     /**
      * The name and signature of the console command.
@@ -47,33 +47,37 @@ class InstallComposer extends Command
         /** Install Composer Dependencies */
         if (File::exists(config_path('lerova/composer.php'))) {
 
-            $live = config('lerova.composer.live');
-            $dev = config('lerova.composer.dev');
+            if ($this->confirm('Install Composer?')) {
 
-            $value = count($live) + count($dev);
+                $live = config('lerova.composer.live');
+                $dev = config('lerova.composer.dev');
 
-            $bar = $this->output->createProgressBar($value);
+                $value = count($live) + count($dev);
 
-            if (!App::environment('production', 'staging'))
-            {
-                foreach (config('lerova.composer.dev') as $package) {
-                    $bar->advance();
-                    shell_exec('composer require --dev ' . $package);
+                $bar = $this->output->createProgressBar($value);
+
+                if (!App::environment('production', 'staging'))
+                {
+                    foreach (config('lerova.composer.dev') as $package) {
+                        $bar->advance();
+                        shell_exec('composer require --dev ' . $package);
+                    }
                 }
+
+                foreach (config('lerova.composer.live') as $package) {
+                    $bar->advance();
+                    shell_exec('composer require ' . $package);
+                }
+
+                $bar->finish();
+
+                $this->info('Successfully installed');
             }
 
-            foreach (config('lerova.composer.live') as $package) {
-                $bar->advance();
-                shell_exec('composer require ' . $package);
-            }
-
-            $bar->finish();
-
-            $this->info('You have successfully installed Lerovas Composer Dependencies ');
         }
         else
         {
-            $this->info('Before you can INSTALL Lerovas Composer Dependences, you have to INSTALL Lerova using the command: "php artisan lerova:install"');
+            $this->info('Install first!');
 
         }
 
