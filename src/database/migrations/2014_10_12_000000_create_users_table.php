@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('language')->default('en');
             $table->rememberToken();
             $table->timestamps();
-            $table->dateTime('last_activity')->default(\Carbon\Carbon::now());
+            $table->dateTime('last_activity')->nullable();
             $table->softDeletes();
         });
     }

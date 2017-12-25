@@ -14,8 +14,7 @@ class CreateSessionsTable extends Migration
 
     public function up()
     {
-        if (!App::environment('production'))
-        {
+
             Schema::create('sessions', function (Blueprint $table) {
                 $table->string('id')->unique();
                 $table->unsignedInteger('user_id')->nullable();
@@ -24,7 +23,7 @@ class CreateSessionsTable extends Migration
                 $table->text('payload');
                 $table->integer('last_activity');
             });
-        }
+
     }
 
     /**
@@ -34,10 +33,9 @@ class CreateSessionsTable extends Migration
      */
     public function down()
     {
-        if (!App::environment('production'))
-        {
+            Schema::disableForeignKeyConstraints('sessions');
             Schema::dropIfExists('sessions');
 
-        }
+
     }
 }

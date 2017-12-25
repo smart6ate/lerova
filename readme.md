@@ -1,21 +1,24 @@
 ## About Lerova
 
-Lerova is an easy-to-use Content Marketing Tool for Creators!
-
+Lerova is an Easy-To-Use Content Marketing Tool for Creators!
 
 ## Installation
 
-Pull in Lerova in your existing Laravel 5.5 project
-
 ```
+composer create-project laravel/laravel your_project_name
+
+php artisan make:auth
+php artisan migrate
+
 composer require smart6ate/lerova
 
 php artisan lerova:install
+php artisan composer:install
 
 ```
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send us an e-mail: info@smartgate.ch. All security vulnerabilities will be promptly addressed.
+If you discover any security vulnerabilities within the packages, please send us an e-mail: info@smartgate.ch. All requests will be promptly addressed.
 
 ## License
 

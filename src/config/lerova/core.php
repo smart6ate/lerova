@@ -2,11 +2,11 @@
 
 return [
 
-    'version' => config('lerova.version', 'v1.1.2'),
+    'version' => config('lerova.version', 'v1.1.5'),
 
     'meta' =>
         [
-            'author' => config('lerova.meta.author', 'smartgate AG'),
+            'author' => config('lerova.meta.author', 'Lerova CMS'),
         ],
 
     'user' =>

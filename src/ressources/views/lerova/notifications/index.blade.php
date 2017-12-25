@@ -25,6 +25,13 @@
                     <span class="label @if(Route::currentRouteName() === 'lerova.notifications.archived') label-primary @else label-default @endif">Archived</span>
                 </a>
 
+
+
+                @role('administrator')
+                <a href="{{ route('send.notification') }}" class="pull-right btn btn-xs btn-success">Add a new Notification</a>
+                @endrole
+
+
                 <hr>
 
             </div>

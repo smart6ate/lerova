@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\Lerova\ResetPassword;
 use App\Traits\Lerova\Magicable;
 use App\Traits\Lerova\Orderable;
 use App\Traits\Lerova\Roleable;
@@ -9,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class User extends Authenticatable
 {
@@ -51,6 +54,19 @@ class User extends Authenticatable
     public function isSameAs(User $user)
     {
         return $this->id == $user->id;
+    }
+
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
     }
 
 }

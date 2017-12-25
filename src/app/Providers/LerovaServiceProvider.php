@@ -46,11 +46,8 @@ class LerovaServiceProvider extends ServiceProvider
 
             __DIR__.'/../../data/' => base_path('data'),
 
-            __DIR__ . '/../../app/Models/User.php' => base_path('app/User.php'),
-
             __DIR__ . '/../../ressources/views/welcome.blade.php' => base_path('resources/views/welcome.blade.php'),
 
-            __DIR__ . '/../../app/Http/Controllers/RSSController.php' => base_path('app/Http/Controllers/RSSController.php'),
             __DIR__ . '/../../app/Http/Middleware/RedirectIfAuthenticated.php' => base_path('app/Http/Middleware/RedirectIfAuthenticated.php'),
 
             __DIR__ . '/../../app/Providers/AuthServiceProvider.php' => base_path('app/Providers/AuthServiceProvider.php'),
@@ -62,6 +59,12 @@ class LerovaServiceProvider extends ServiceProvider
             __DIR__ . '/../../config/lerova/' => config_path('lerova/'),
 
             __DIR__ . '/../../app/Console/Commands/Lerova' => base_path('app/Console/Commands/Lerova/'),
+
+            __DIR__ . '/../../app/Models/User.php' => base_path('app/User.php'),
+
+            __DIR__ . '/../../app/Http/Controllers/RSSController.php' => base_path('app/Http/Controllers/RSSController.php'),
+            __DIR__ . '/../../app/Http/Controllers/StoreNotificationRequest.php' => base_path('app/Http/Controllers/StoreNotificationRequest.php'),
+
 
             __DIR__ . '/../../app/Models/Lerova/' => base_path('app/Models/Lerova/'),
             __DIR__ . '/../../app/Notifications/' => base_path('app/Notifications/Lerova/'),

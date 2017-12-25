@@ -57,33 +57,10 @@
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-
-                        <div class="col-md-10 col-md-offset-1">
-                            <input id="password" type="password" placeholder="Password" class="form-control"
-                                   name="password" required>
-
-                            @if ($errors->has('password'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-
-                        <div class="col-md-10 col-md-offset-1">
-                            <input id="password-confirm" type="password" placeholder="Password confirmation"
-                                   class="form-control" name="password_confirmation" required>
-                        </div>
-                    </div>
-
-
                     <div class="form-group{{ $errors->has('role_id') ? ' has-error' : '' }}">
 
                         <div class="col-md-10 col-md-offset-1">
-                            <select id="role_id" class="form-control" name="role_id">
+                            <select title="Role id" id="role_id" class="form-control" name="role_id">
 
                                 <option value="" selected>No Role selected</option>
 
@@ -99,6 +76,21 @@
                             @if ($errors->has('role_id'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('role_id') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('notification') ? ' has-error' : '' }}">
+
+                        <div class="col-md-10 col-md-offset-1">
+
+
+                            <label class="checkbox-inline"><input type="checkbox" name="notification" id="notification" value="1" >Notify User</label>
+
+                        @if ($errors->has('notification'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('notification') }}</strong>
                                     </span>
                             @endif
                         </div>

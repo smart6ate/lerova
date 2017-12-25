@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class MagicLoginRequested extends Notification
+class CreateUserNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -19,12 +19,10 @@ class MagicLoginRequested extends Notification
      */
 
     public $user;
-    public $options;
 
-    public function __construct(User $user, $options)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->options = $options;
     }
 
     /**
@@ -46,14 +44,12 @@ class MagicLoginRequested extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('/login/magic/' . $this->user->token->token . '?' . http_build_query($this->options));
-
-        dd($url);
+        $url = url('/login/magic/' . $this->user->token->token);
 
         return (new MailMessage)
-            ->line('You are receiving this email because we received a authentication request for your account.')
-            ->action('Login', $url)
-            ->line('If you did not request a authentications request, no further action is required.');
+            ->line('A user account was created for your E-Mail Address .')
+            ->action('Login', env('APP_URL'))
+            ->line('If you did not request access send us an E-Mail:' .env('MAIL_FROM_ADDRESS'));
     }
 
     /**

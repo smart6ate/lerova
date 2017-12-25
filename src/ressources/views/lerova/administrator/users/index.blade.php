@@ -45,7 +45,8 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Page</th>
+                                    <th>Name</th>
+                                    <th>Last Activity</th>
                                     <th>Roles</th>
                                     <th class="text-center">Archive</th>
                                 </tr>
@@ -58,8 +59,12 @@
                                         <td>
                                             {{ $user->name }}
                                         </td>
-                                        <td>
 
+                                        <td>
+                                             @if(!empty($user->last_activity)) {{ $user->last_activity->diffForHumans() }} @endif
+                                        </td>
+
+                                        <td>
 
                                             @if(!count($user->roles))
                                                 <a href="{{ route('lerova.administrator.users.edit', $user) }}{{ $user->uuid }}">
@@ -79,11 +84,6 @@
                                                 @endforeach
 
                                             @endif
-
-
-
-
-                                        </td>
 
                                         <td class="text-center">
                                             @if(!Auth::user()->isSameAs($user))

@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
-
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
 
 use App\Models\Lerova\Blog;
 use Carbon\Carbon;

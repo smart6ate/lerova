@@ -6,15 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Lerova\Administrator\Pages\StoreUserRequest;
 use App\Http\Requests\Lerova\Administrator\Pages\UpdateUserRoleRequest;
 use App\Models\Lerova\Role;
+use App\Notifications\Lerova\CreateUserNotification;
 use App\User;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 
 class UsersController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['role:administrator']);
@@ -27,7 +28,6 @@ class UsersController extends Controller
         return view('lerova.administrator.users.index', compact('users'));
     }
 
-
     public function create()
     {
         $roles = Role::all();
@@ -35,13 +35,12 @@ class UsersController extends Controller
         return view('lerova.administrator.users.create', compact('roles'));
     }
 
-
     public function store(StoreUserRequest $request)
     {
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => bcrypt($request->email )
         ]);
 
         if (!empty($request->role_id))
@@ -49,6 +48,11 @@ class UsersController extends Controller
             $role = Role::findOrFail($request->role_id);
 
             $user->roles()->attach($role);
+        }
+
+        if($request->notification)
+        {
+            Notification::send($this, new CreateUserNotification($user));
         }
 
         Session::flash('success', 'User successfully created!');
