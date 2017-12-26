@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ForwardNotificationRequest extends Notification implements ShouldQueue
+class ForwardNotificationRequest extends Notification
 {
     use Queueable;
 
@@ -23,7 +23,7 @@ class ForwardNotificationRequest extends Notification implements ShouldQueue
 
     public function __construct(\App\Models\Lerova\Notification $notification)
     {
-        $this->$notification = $notification;
+        $this->notification = $notification;
     }
 
     /**
@@ -48,10 +48,13 @@ class ForwardNotificationRequest extends Notification implements ShouldQueue
     {
         $mail = 'mailto:' . $this->notification->email;
 
+        dd($mail);
+
         return (new MailMessage)
             ->line('You have received a new Notification from: ' .$this->notification->name)
             ->line($this->notification->body)
             ->action('Reply to ' . $mail, $mail);
+
     }
 
     /**
