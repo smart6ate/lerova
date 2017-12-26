@@ -23,7 +23,7 @@ class ForwardNotificationRequest extends Notification implements ShouldQueue
 
     public function __construct(\App\Models\Lerova\Notification $notification)
     {
-        $this->notificaiton = $notification;
+        $this->$notification = $notification;
     }
 
     /**
@@ -46,11 +46,11 @@ class ForwardNotificationRequest extends Notification implements ShouldQueue
 
     public function toMail($notifiable)
     {
-        $mail = 'mailto:' . $this->notificaiton->email;
+        $mail = 'mailto:' . $this->notification->email;
 
         return (new MailMessage)
-            ->line('You have received a new Notification from: ' .$this->notificaiton->name)
-            ->line($this->notificaiton->body)
+            ->line('You have received a new Notification from: ' .$this->notification->name)
+            ->line($this->notification->body)
             ->action('Reply to ' . $mail, $mail);
     }
 

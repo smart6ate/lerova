@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lerova\Notification;
 use App\Notifications\Lerova\ForwardNotificationRequest;
+use App\User;
 
 class StoreNotificationRequest extends Controller
 {
