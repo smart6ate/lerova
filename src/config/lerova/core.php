@@ -2,7 +2,7 @@
 
 return [
 
-    'version' => config('lerova.version', 'v1.1.8'),
+    'version' => config('lerova.version', 'v1.1.9'),
 
     'meta' =>
         [

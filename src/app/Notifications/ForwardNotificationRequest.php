@@ -48,8 +48,6 @@ class ForwardNotificationRequest extends Notification
     {
         $mail = 'mailto:' . $this->notification->email;
 
-        dd($mail);
-
         return (new MailMessage)
             ->line('You have received a new Notification from: ' .$this->notification->name)
             ->line($this->notification->body)
