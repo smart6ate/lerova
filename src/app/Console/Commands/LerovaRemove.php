@@ -91,6 +91,7 @@ class LerovaRemove extends Command
 
                 File::delete(config_path('lerova.php'));
                 File::delete(base_path('app/Http/Controllers/RSSController.php'));
+                File::delete(base_path('app/Http/Controllers/StoreNotificationRequest.php'));
 
                 /** Overrides */
                 $this->call('vendor:publish', array('--tag' => 'lerova-remove', '--force' => true));

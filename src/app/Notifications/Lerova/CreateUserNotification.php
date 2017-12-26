@@ -44,8 +44,6 @@ class CreateUserNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $url = url('/login/magic/' . $this->user->token->token);
-
         return (new MailMessage)
             ->line('A user account was created for your E-Mail Address .')
             ->action('Login', env('APP_URL'))

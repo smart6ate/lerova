@@ -52,6 +52,8 @@ class LerovaServiceProvider extends ServiceProvider
 
             __DIR__ . '/../../app/Providers/AuthServiceProvider.php' => base_path('app/Providers/AuthServiceProvider.php'),
 
+            //Load Test Configuration
+
         ], 'lerova-install');
 
         /** Update Lerova */
@@ -74,23 +76,24 @@ class LerovaServiceProvider extends ServiceProvider
             __DIR__ . '/../../app/Http/Middleware/Lerova/' => base_path('app/Http/Middleware/Lerova/'),
             __DIR__ . '/../../app/Http/Requests/Lerova/' => base_path('app/Http/Requests/Lerova/'),
 
-            __DIR__ . '/../../app/Policies/' => base_path('app/Policies/Lerova/'),
+/*            __DIR__ . '/../../app/Policies/' => base_path('app/Policies/Lerova/'),*/
+
             __DIR__ . '/../../app/Providers/Lerova/' => base_path('app/Providers/Lerova/'),
             __DIR__ . '/../../app/Traits/' => base_path('app/Traits/Lerova/'),
 
             __DIR__.'/../../database/' => base_path('database'),
 
-            __DIR__.'/../../ressources/views/lerova/' => base_path('resources/views/lerova'),
-            __DIR__.'/../../ressources/views/errors/' => base_path('resources/views/errors'),
-            __DIR__.'/../../ressources/views/email/' => base_path('resources/views/email'),
-            __DIR__.'/../../ressources/views/auth/' => base_path('resources/views/auth'),
+            __DIR__.'/../../ressources/views/lerova/' => base_path('resources/views/lerova/'),
+            __DIR__.'/../../ressources/views/errors/' => base_path('resources/views/errors/'),
+            __DIR__.'/../../ressources/views/email/' => base_path('resources/views/email/'),
+            __DIR__.'/../../ressources/views/auth/' => base_path('resources/views/auth/'),
 
             __DIR__.'/../../public/' => public_path('assets'),
             __DIR__.'/../../routes/lerova/' => base_path('routes/lerova'),
 
-            __DIR__.'/../../tests/Unit' => base_path('tests/Unit/Lerova'),
-            __DIR__.'/../../tests/Feature' => base_path('tests/Feature/Lerova'),
-            __DIR__.'/../../tests/Browser' => base_path('tests/Browser/Lerova'),
+/*            __DIR__.'/../../tests/Unit/' => base_path('tests/Unit/Lerova/'),
+            __DIR__.'/../../tests/Feature/' => base_path('tests/Feature/Lerova/'),
+            __DIR__.'/../../tests/Browser/' => base_path('tests/Browser/Lerova/'),*/
 
         ], 'lerova-update');
 

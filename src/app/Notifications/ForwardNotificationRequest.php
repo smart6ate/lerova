@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ForwardNotificationRequest extends Notification implements ShouldQueue
+class ForwardNotificationRequest extends Notification
 {
     use Queueable;
 

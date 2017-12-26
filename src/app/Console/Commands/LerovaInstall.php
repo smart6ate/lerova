@@ -45,12 +45,14 @@ class LerovaInstall extends Command
 
             if ($this->confirm('Install Lerova?')) {
 
-                File::delete(base_path('app/Http/Controllers/HomeController.php'));
-
                 $this->call('vendor:publish', array('--tag' => 'lerova-install', '--force' => true));
                 $this->call('vendor:publish', array('--tag' => 'lerova-update', '--force' => true));
 
                 $this->call('lerova:reset');
+
+                File::delete(base_path('app/Http/Controllers/HomeController.php'));
+                File::delete(base_path('resources/views/home.blade.php'));
+
 
             }
 

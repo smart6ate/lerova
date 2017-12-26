@@ -52,7 +52,7 @@ class UsersController extends Controller
 
         if($request->notification)
         {
-            Notification::send($this, new CreateUserNotification($user));
+            Notification::send($user, new CreateUserNotification($user));
         }
 
         Session::flash('success', 'User successfully created!');

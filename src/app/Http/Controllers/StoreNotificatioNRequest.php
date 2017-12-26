@@ -18,7 +18,9 @@ class StoreNotificationRequest extends Controller
 
         $notification->save();
 
-        \Illuminate\Support\Facades\Notification::send($this, new ForwardNotificationRequest($notification));
+        $user = User::find(1);
+
+        \Illuminate\Support\Facades\Notification::send($user, new ForwardNotificationRequest($notification));
 
         return redirect()->back();
     }
