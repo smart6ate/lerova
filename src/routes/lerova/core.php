@@ -3,10 +3,10 @@
 
 Route::get('/send/message', 'StoreNotificationRequest@send')->name('send.notification');
 
-
 Route::get('/login/magic', 'Lerova\Magic\LoginController@show')->name('login.magic');
 Route::post('/login/magic', 'Lerova\Magic\LoginController@sendToken')->name('login.magic');
 Route::get('/login/magic/{token}', 'Lerova\Magic\LoginController@validateToken');
+
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 

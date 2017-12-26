@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Lerova\Magic;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lerova\UserLoginToken;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -54,9 +55,11 @@ class LoginController extends Controller
 
         }
 
-
         Auth::login($token->user, $request->remember);
 
-        return redirect()->intended();
+        $token->user->last_activity = Carbon::now();
+        $token->user->save();
+
+        return redirect()->route('lerova.dashboard.index');
     }
 }
