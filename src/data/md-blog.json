@@ -1,0 +1,18 @@
+{
+  "posts": {
+    "name": "posts",
+    "status": "0"
+  },
+  "images": {
+    "name": "images",
+    "status": "0"
+  },
+  "events": {
+    "name": "events",
+    "status": "0"
+  },
+  "links": {
+    "name": "links",
+    "status": "0"
+  }
+}

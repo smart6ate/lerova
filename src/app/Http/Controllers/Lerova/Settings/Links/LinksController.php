@@ -11,7 +11,7 @@ class LinksController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.settings.links'))
+        if(!getSettingStatus('links'))
         {
             $this->middleware('role:developer');
         }
@@ -19,11 +19,14 @@ class LinksController extends Controller
 
     public function edit()
     {
-            $json = File::get(base_path('data/links.json'));
-
-            $links = json_decode($json);
-
+        if (!empty(getJSONFile('links'))) {
+            $links = getJSONFile('links');
             return view('lerova.settings.links.edit', compact('links'));
+
+        } else {
+            Session::flash('warning', 'Ups! Something went wrong. Please contact the Administrator');
+            return redirect()->back();
+        }
     }
 
     public function update(Request $request)

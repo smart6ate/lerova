@@ -19,11 +19,15 @@ class AnalyticsController extends Controller
 
     public function edit()
     {
-        $json = File::get(base_path('data/analytics.json'));
+        if (!empty(getJSONFile('analytics'))) {
+            $analytics = getJSONFile('analytics');
+            return view('lerova.administrator.analytics.edit', compact('analytics'));
 
-        $analytics = json_decode($json);
+        } else {
+            Session::flash('warning', 'Ups! Something went wrong. Please contact the Administrator');
+            return redirect()->back();
+        }
 
-        return view('lerova.administrator.analytics.edit', compact('analytics'));
     }
 
 

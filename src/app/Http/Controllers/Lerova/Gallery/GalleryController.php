@@ -9,7 +9,7 @@ class GalleryController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.modules.gallery'))
+        if(!getModuleStatus('gallery'))
         {
             $this->middleware('role:developer');
         }

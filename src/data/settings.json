@@ -1,0 +1,42 @@
+{
+  "status": {
+    "name": "status",
+    "status": "0"
+  },
+  "general": {
+    "name": "general",
+    "status": "0"
+  },
+  "company": {
+    "name": "company",
+    "status": "0"
+  },
+  "contact_form": {
+    "name": "contact_form",
+    "status": "0"
+  },
+  "pages": {
+    "name": "pages",
+    "status": "0"
+  },
+  "metadata": {
+    "name": "metadata",
+    "status": "0"
+  },
+  "links": {
+    "name": "links",
+    "status": "0"
+  },
+  "legal": {
+    "name": "legal",
+    "status": "0"
+  },
+  "imprint": {
+    "name": "imprint",
+    "status": "0"
+  },
+  "privacy": {
+    "name": "privacy",
+    "status": "0"
+  }
+}

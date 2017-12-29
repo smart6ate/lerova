@@ -84,6 +84,41 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
             Route::get('/', 'Lerova\Administrator\AdministratorController@index')->name('lerova.administrator.index');
 
+
+            Route::group(['prefix' => '/modules'], function () {
+
+                Route::get('/edit', 'Lerova\Administrator\ModulesController@edit')->name('lerova.administrator.modules.edit');
+                Route::patch('/update', 'Lerova\Administrator\ModulesController@update')->name('lerova.administrator.modules.update');
+
+
+
+            Route::group(['prefix' => '/blog'], function () {
+
+                Route::get('/edit', 'Lerova\Administrator\Modules\BlogController@edit')->name('lerova.administrator.modules.blog.edit');
+                Route::patch('/update', 'Lerova\Administrator\Modules\BlogController@update')->name('lerova.administrator.modules.blog.update');
+
+            });
+
+
+                Route::group(['prefix' => '/notifications'], function () {
+
+                    Route::get('/edit', 'Lerova\Administrator\Modules\NotificationsController@edit')->name('lerova.administrator.modules.notifications.edit');
+                    Route::patch('/update', 'Lerova\Administrator\Modules\NotificationsController@update')->name('lerova.administrator.modules.notifications.update');
+
+                });
+
+
+            });
+
+            Route::group(['prefix' => '/settings'], function () {
+
+                Route::get('/edit', 'Lerova\Administrator\SettingsController@edit')->name('lerova.administrator.settings.edit');
+                Route::patch('/update', 'Lerova\Administrator\SettingsController@update')->name('lerova.administrator.settings.update');
+
+            });
+
+
+
             Route::group(['prefix' => '/users'], function () {
 
                 Route::get('/', 'Lerova\Administrator\UsersController@index')->name('lerova.administrator.users.index');

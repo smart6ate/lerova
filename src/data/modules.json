@@ -1,0 +1,22 @@
+{
+  "blog": {
+    "name": "blog",
+    "status": "0"
+  },
+  "gallery": {
+    "name": "gallery",
+    "status": "0"
+  },
+  "about": {
+    "name": "about",
+    "status": "0"
+  },
+  "members": {
+    "name": "members",
+    "status": "0"
+  },
+  "notifications": {
+    "name": "notifications",
+    "status": "0"
+  }
+}

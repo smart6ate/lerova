@@ -12,7 +12,7 @@ class MembersController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.modules.members'))
+        if(!getModuleStatus('members'))
         {
             $this->middleware('role:developer');
         }

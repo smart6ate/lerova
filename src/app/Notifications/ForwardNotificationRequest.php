@@ -51,7 +51,7 @@ class ForwardNotificationRequest extends Notification implements ShouldQueue
         return (new MailMessage)
             ->line('You have received a new Notification from: ' .$this->notification->name)
             ->line($this->notification->body)
-            ->action('Reply to ' . $mail, $mail);
+            ->action('Reply', $mail);
 
     }
 

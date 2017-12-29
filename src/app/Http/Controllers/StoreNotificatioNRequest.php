@@ -19,10 +19,22 @@ class StoreNotificationRequest extends Controller
 
         $notification->save();
 
-        $user = User::find(1);
 
-        \Illuminate\Support\Facades\Notification::send($user, new ForwardNotificationRequest($notification));
+        if (!empty(getJSONFile('md-notifications'))) {
 
-        return redirect()->back();
+            $notifications = getJSONFile('md-notifications');
+
+            $user = User::find($notifications->user_id);
+
+            \Illuminate\Support\Facades\Notification::send($user, new ForwardNotificationRequest($notification));
+
+            return redirect()->back();
+
+
+        } else {
+
+            return redirect()->back();
+        }
+
     }
 }

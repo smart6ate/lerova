@@ -3,6 +3,7 @@
 namespace Smart6ate\Lerova\App\Providers;
 
 use App\Providers\Lerova\RoleServiceProvider;
+
 use Carbon\Carbon;
 
 use App\Models\Lerova\Notification;
@@ -39,9 +40,12 @@ class LerovaServiceProvider extends ServiceProvider
         $this->commands([LerovaReset::class]);
         $this->commands([LerovaRemove::class]);
 
+
+
         /* Install Lerova */
         $this->publishes([
             __DIR__ . '/../../config/lerova.php' => config_path('lerova.php'),
+            __DIR__ . '/../../config/failed-job-monitor.php' => config_path('failed-job-monitor.php'),
             __DIR__.'/../../routes/web.php' => base_path('routes/web.php'),
 
             __DIR__.'/../../data/' => base_path('data'),
@@ -61,6 +65,8 @@ class LerovaServiceProvider extends ServiceProvider
             __DIR__ . '/../../config/lerova/' => config_path('lerova/'),
 
             __DIR__ . '/../../app/Console/Commands/Lerova' => base_path('app/Console/Commands/Lerova/'),
+
+            __DIR__ . '/../../app/Helpers/' => base_path('app/Helpers/Lerova/'),
 
             __DIR__ . '/../../app/Models/User.php' => base_path('app/User.php'),
 
@@ -91,9 +97,10 @@ class LerovaServiceProvider extends ServiceProvider
             __DIR__.'/../../public/' => public_path('assets'),
             __DIR__.'/../../routes/lerova/' => base_path('routes/lerova'),
 
-/*            __DIR__.'/../../tests/Unit/' => base_path('tests/Unit/Lerova/'),
+           __DIR__.'/../../tests/Unit/' => base_path('tests/Unit/Lerova/'),
             __DIR__.'/../../tests/Feature/' => base_path('tests/Feature/Lerova/'),
-            __DIR__.'/../../tests/Browser/' => base_path('tests/Browser/Lerova/'),*/
+            __DIR__.'/../../tests/Browser/' => base_path('tests/Browser/Lerova/'),
+            __DIR__.'/../../tests/Integration/' => base_path('tests/Integration/Lerova/'),
 
         ], 'lerova-update');
 
@@ -112,47 +119,12 @@ class LerovaServiceProvider extends ServiceProvider
         ], 'lerova-remove');
 
 
-        if (File::exists(config_path('lerova/composer.php'))) {
-
-            if(Schema::hasTable('notifications'))
-            {
-                \View::composer('*', function($view)
-                {
-                    $count_notifications = Notification::all()->count();
-
-                    $view->with(compact('count_notifications'));
-
-                });
-
-            }
-
-            if(config('lerova.core.settings.company'))
-            {
-                \View::composer('*', function($view)
-                {
-                    $company = json_decode(File::get(base_path('data/company.json')));
-
-                    $view->with(compact('company'));
-
-                });
-            }
-
-
-            \View::composer('*', function($view)
-            {
-                $analytics = json_decode(File::get(base_path('data/analytics.json')));
-                $view->with(compact('analytics'));
-            });
-
-
-            if(config('lerova.core.settings.links'))
-            {
-                \View::composer('*', function($view)
-                {
-                    $links = json_decode(File::get(base_path('data/links.json')));
-                    $view->with(compact('links'));
-                });
-            }
+        $modules_helper_path = app_path() . '/Helpers/Lerova/modules.php';
+        $settings_helper_path = app_path() . '/Helpers/Lerova/settings.php';
+        $files_helper_path = app_path() . '/Helpers/Lerova/files.php';
+        if(file_exists($modules_helper_path)){ require_once $modules_helper_path;}
+        if(file_exists($settings_helper_path)){ require_once $settings_helper_path;}
+        if(file_exists($files_helper_path)){ require_once $files_helper_path;}
 
 
             if (File::exists(config_path('lerova/core.php')))
@@ -167,12 +139,19 @@ class LerovaServiceProvider extends ServiceProvider
                     $schedule->command('auth:clear-tokens')->daily();
 
                 });
+
+
+                if(Schema::hasTable('notifications'))
+                {
+                    \View::composer('*', function($view)
+                    {
+                        $count_notifications = Notification::all()->count();
+
+                        $view->with(compact('count_notifications'));
+
+                    });
+                }
             }
-        }
-
-
-
-
     }
 
     /**

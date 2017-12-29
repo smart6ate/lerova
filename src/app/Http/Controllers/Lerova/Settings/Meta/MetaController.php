@@ -12,7 +12,7 @@ class MetaController extends Controller
 
     public function __construct()
     {
-        if(!config('lerova.settings.metadata'))
+        if(!getSettingStatus('metadata'))
         {
             $this->middleware('role:developer');
         }

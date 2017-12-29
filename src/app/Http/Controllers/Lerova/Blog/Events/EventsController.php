@@ -13,14 +13,16 @@ class EventsController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.modules.blog'))
+        if(!getModuleStatus('blog'))
         {
             $this->middleware('role:developer');
         }
 
-        if (!config('lerova.blog.create_events')) {
+        if(!getBlogStatus('events'))
+        {
             $this->middleware('role:developer');
         }
+
         $this->middleware('role:administrator', ['only' => ['delete' ]]);
 
     }

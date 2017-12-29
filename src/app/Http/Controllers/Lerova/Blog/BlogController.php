@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.modules.blog'))
+        if(!getModuleStatus('blog'))
         {
             $this->middleware('role:developer');
         }

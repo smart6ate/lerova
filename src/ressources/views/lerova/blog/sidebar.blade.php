@@ -18,13 +18,13 @@
 
 
     <ul class="list-group">
-        @if(config('lerova.core.blog.create_posts'))
+        @if(getBlogStatus('posts'))
             <li class="list-group-item @if(Route::currentRouteName() === 'lerova.blog.posts.create') active @endif">
                 <a style="color:black;" href="{{ route('lerova.blog.posts.create') }}"><i
                             style="margin-right: 15px;" class="fa fa-newspaper-o" aria-hidden="true"></i>
                     Create Posts</a></li>
         @endif
-        @if(config('lerova.core.blog.create_images'))
+        @if(getBlogStatus('images'))
 
             <li class="list-group-item @if(Route::currentRouteName() === 'lerova.blog.images.create') active @endif"><a
                         style="color:black;"
@@ -32,14 +32,14 @@
                             style="margin-right: 15px;" class="fa fa-file-image-o" aria-hidden="true"></i>
                     Create Images</a></li>
         @endif
-        @if(config('lerova.core.blog.create_events'))
+        @if(getBlogStatus('events'))
 
             <li class="list-group-item @if(Route::currentRouteName() === 'lerova.blog.events.create') active @endif"><a
                         style="color:black;"
                         href="{{ route('lerova.blog.events.create') }}"><i
                             style="margin-right: 15px;" class="fa fa-calendar" aria-hidden="true"></i>
                     Create Events</a></li>@endif
-        @if(config('lerova.core.blog.create_links'))
+        @if(getBlogStatus('links'))
 
             <li class="list-group-item @if(Route::currentRouteName() === 'lerova.blog.links.create') active @endif"><a
                         style="color:black;"

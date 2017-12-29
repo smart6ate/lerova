@@ -11,18 +11,21 @@ class AboutController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.modules.about'))
-        {
+        if (!getModuleStatus('about')) {
             $this->middleware('role:developer');
         }
-
     }
 
     public function edit()
     {
-        $about = json_decode(File::get(base_path('data/about.json')));
+        if (!empty(getJSONFile('about'))) {
+            $about = getJSONFile('about');
+            return view('lerova.about.edit', compact('about'));
 
-        return view('lerova.about.edit', compact('about'));
+        } else {
+            Session::flash('warning', 'Ups! Something went wrong. Please contact the Administrator');
+            return redirect()->back();
+        }
     }
 
     public function update(Request $request)
@@ -39,19 +42,16 @@ class AboutController extends Controller
             'image' => request('image'),
         );
 
-        try
-        {
+        try {
             File::delete(base_path('data/about.json'));
 
             File::put(base_path('data/about.json'), json_encode($about));
 
-        }
-        catch (\Exception $e)
-        {
-            Session::flash('warning', 'Ups! Something went wrong. Plese contact the Administrator');
+        } catch (\Exception $e) {
+            Session::flash('warning', 'Ups! Something went wrong. Please contact the Administrator');
         }
 
-            return redirect()->route('lerova.about.edit');
+        return redirect()->back();
     }
 
 }

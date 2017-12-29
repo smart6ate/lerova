@@ -13,7 +13,7 @@ class ImprintController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.settings.imprint'))
+        if(!getSettingStatus('imprint'))
         {
             $this->middleware('role:developer');
         }
@@ -21,11 +21,14 @@ class ImprintController extends Controller
 
     public function edit()
     {
-            $json = File::get(base_path('data/imprint.json'));
-
-            $imprint = json_decode($json);
-
+        if (!empty(getJSONFile('imprint'))) {
+            $imprint = getJSONFile('imprint');
             return view('lerova.settings.imprint.edit', compact('imprint'));
+
+        } else {
+            Session::flash('warning', 'Ups! Something went wrong. Please contact the Administrator');
+            return redirect()->back();
+        }
     }
 
     public function update(Request $request)

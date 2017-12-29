@@ -50,8 +50,8 @@
 
 
 
-                    @if(config('lerova.modules.blog'))
-                    <div class="col-md-4">
+                        @if(getModuleStatus('blog'))
+                        <div class="col-md-4">
 
                         <a href="{{ route('lerova.blog.index') }}">
                             <div class="panel panel-default">
@@ -66,7 +66,7 @@
                     </div>
                     @endif
 
-                        @if(config('lerova.modules.gallery'))
+                   {{--         @if(getModuleStatus('gallery'))
                             <div class="col-md-4">
 
                                 <a href="{{ route('lerova.gallery.index') }}">
@@ -80,10 +80,10 @@
                                 </a>
 
                             </div>
-                        @endif
+                        @endif--}}
 
 
-                    @if(config('lerova.modules.about'))
+                    @if(getModuleStatus('about'))
                     <div class="col-md-4">
 
                         <a href="{{ route('lerova.about.edit') }}">
@@ -99,7 +99,7 @@
                     </div>
                     @endif
 
-                        @if(config('lerova.modules.members'))
+                            @if(getModuleStatus('members'))
                             <div class="col-md-4">
 
                                 <a href="{{ route('lerova.members.index') }}">
@@ -115,7 +115,7 @@
                             </div>
                         @endif
 
-                    @if(config('lerova.modules.notifications'))
+                    @if(getModuleStatus('notifications'))
                     <div class="col-md-4">
 
                         <a href="{{ route('lerova.notifications.index') }}">

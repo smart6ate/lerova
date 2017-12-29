@@ -12,7 +12,7 @@ class PrivacyController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.settings.privacy'))
+        if(!getSettingStatus('privacy'))
         {
             $this->middleware('role:developer');
         }
@@ -20,11 +20,15 @@ class PrivacyController extends Controller
 
     public function edit()
     {
-            $json = File::get(base_path('data/privacy.json'));
+        if (!empty(getJSONFile('privacy'))) {
+            $privacy = getJSONFile('privacy');
+            return view('lerova.settings.privacy.edit', compact('privacy'));
 
-            $privacy = json_decode($json);
+        } else {
+            Session::flash('warning', 'Ups! Something went wrong. Please contact the Administrator');
+            return redirect()->back();
+        }
 
-        return view('lerova.settings.privacy.edit', compact('privacy'));
     }
 
     public function update(Request $request)

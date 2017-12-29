@@ -2,7 +2,7 @@
 
 return [
 
-    'version' => config('lerova.version', 'v1.1.9'),
+    'version' => config('lerova.version', 'v1.1.10'),
 
     'meta' =>
         [
@@ -14,33 +14,6 @@ return [
             'avatar' => config('lerova.user.avatar', 'https://www.gravatar.com/avatar/?s=500&d=mm'),
         ],
 
-    'modules' =>
-        [
-            'blog' => config('lerova.modules.blog', false),
-
-            'gallery' => config('lerova.modules.gallery', false),
-            'about' => config('lerova.modules.about', false),
-            'members' => config('lerova.modules.members', false),
-            'notifications' => config('lerova.modules.notifications', false),
-        ],
-
-    'settings' =>
-        [
-            'status' => config('lerova.settings.status', false),
-            'general' => config('lerova.settings.general', false),
-            'company' => config('lerova.settings.company', false),
-            'contact_form' => config('lerova.settings.contact_form', false),
-
-            'pages' => config('lerova.settings.pages', false),
-            'metadata' => config('lerova.settings.metadata', false),
-
-            'social_medias' => config('lerova.settings.social_medias', false),
-            'links' => config('lerova.settings.links', false),
-
-            'legal' => config('lerova.settings.legal', false),
-            'imprint' => config('lerova.settings.imprint', false),
-            'privacy' => config('lerova.settings.privacy', false),
-        ],
 
     'pages' =>
         [
@@ -57,11 +30,6 @@ return [
 
     'blog' =>
         [
-
-            'create_posts' => config('lerova.blog.create_posts', false),
-            'create_images' => config('lerova.blog.create_images', false),
-            'create_events' => config('lerova.blog.create_events', false),
-            'create_links' => config('lerova.blog.create_links', false),
 
             'language' => config('lerova.blog.language', 'de_DE'),
             'title_max' => config('lerova.blog.title_max', 60),

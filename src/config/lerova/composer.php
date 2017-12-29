@@ -11,6 +11,9 @@ return [
 
     'live' =>
     [
+        'guzzlehttp/guzzle',
+        'genealabs/laravel-caffeine',
+        'spatie/laravel-failed-job-monitor',
         'spatie/laravel-sitemap',
         'roumen/feed'
     ],

@@ -11,7 +11,7 @@ class FormController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.settings.contact_form'))
+        if(!getSettingStatus('contact_form'))
         {
             $this->middleware('role:developer');
         }
@@ -19,11 +19,16 @@ class FormController extends Controller
 
     public function edit()
     {
-            $json = File::get(base_path('data/form.json'));
-
-            $form = json_decode($json);
-
+        if (!empty(getJSONFile('form'))) {
+            $form = getJSONFile('form');
             return view('lerova.settings.form.edit', compact('form'));
+
+        } else {
+            Session::flash('warning', 'Ups! Something went wrong. Please contact the Administrator');
+            return redirect()->back();
+        }
+
+
     }
 
     public function update(Request $request)

@@ -13,11 +13,13 @@ class ImagesController extends Controller
 {
     public function __construct()
     {
-        if (!config('lerova.modules.blog')) {
+        if(!getModuleStatus('blog'))
+        {
             $this->middleware('role:developer');
         }
 
-        if (!config('lerova.blog.create_images')) {
+        if(!getBlogStatus('images'))
+        {
             $this->middleware('role:developer');
         }
 

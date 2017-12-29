@@ -53,7 +53,7 @@
 
             <div class="col-md-12">
 
-                @if(config('lerova.settings.general'))
+                @if(getSettingStatus('status'))
                     <div class="col-md-6">
 
                         <h3>General</h3>
@@ -63,7 +63,7 @@
                         <div class="row text-center">
 
 
-                            @if(config('lerova.settings.company'))
+                            @if(getSettingStatus('company'))
                                 <div class="col-md-4">
 
                                     <a href="{{ route('lerova.settings.company.edit') }}">
@@ -79,7 +79,7 @@
                                 </div>
                             @endif
 
-                                @if(config('lerova.settings.contact_form'))
+                                @if(getSettingStatus('contact_form'))
                                     <div class="col-md-4">
 
                                         <a href="{{ route('lerova.settings.form.edit') }}">
@@ -101,7 +101,7 @@
                     </div>
                 @endif
 
-                @if(config('lerova.settings.pages'))
+                    @if(getSettingStatus('pages'))
                     <div class="col-md-6">
 
                         <h3>Pages</h3>
@@ -110,7 +110,7 @@
 
                         <div class="row text-center">
 
-                            @if(config('lerova.settings.metadata'))
+                            @if(getSettingStatus('metadata'))
                                 <div class="col-md-4">
 
                                     <a href="{{ route('lerova.settings.meta.index') }}">
@@ -133,7 +133,6 @@
                     </div>
                 @endif
 
-                @if(config('lerova.settings.social_medias'))
 
                     <div class="col-md-6">
 
@@ -142,7 +141,7 @@
                         <hr>
 
                         <div class="row text-center">
-                            @if(config('lerova.settings.links'))
+                            @if(getSettingStatus('links'))
 
                                 <div class="col-md-4">
 
@@ -164,9 +163,8 @@
 
                     </div>
 
-                @endif
 
-                @if(config('lerova.settings.legal'))
+                    @if(getSettingStatus('legal'))
 
                     <div class="col-md-6">
 
@@ -175,7 +173,7 @@
                         <hr>
 
                         <div class="row text-center">
-                            @if(config('lerova.settings.imprint'))
+                            @if(getSettingStatus('imprint'))
 
                                 <div class="col-md-4">
 
@@ -192,7 +190,7 @@
                                 </div>
                             @endif
 
-                            @if(config('lerova.settings.privacy'))
+                                @if(getSettingStatus('privacy'))
 
                                 <div class="col-md-4">
 

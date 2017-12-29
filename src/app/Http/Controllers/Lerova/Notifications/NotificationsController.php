@@ -10,7 +10,7 @@ class NotificationsController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.modules.notifications'))
+        if(!getModuleStatus('notifications'))
         {
             $this->middleware('role:developer');
         }

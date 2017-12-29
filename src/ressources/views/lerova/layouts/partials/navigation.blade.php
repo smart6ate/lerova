@@ -25,26 +25,25 @@
 
                     <li><a href="{{ route('lerova.dashboard.index') }}">Dashboard</a>
 
-                    @if(config('lerova.modules.blog'))
-                    <li><a href="{{ route('lerova.blog.index') }}">Blog</a>
+                    @if(getModuleStatus('blog'))
+                        <li><a href="{{ route('lerova.blog.index') }}">Blog</a>
                     @endif
 
 
-                    @if(config('lerova.modules.about'))
+                    @if(getModuleStatus('about'))
                     <li><a href="{{ route('lerova.about.edit') }}">About Me</a>
                     @endif
 
-                    @if(config('lerova.modules.members'))
+                    @if(getModuleStatus('members'))
                         <li><a href="{{ route('lerova.members.index') }}">Members</a>
                     @endif
 
-
-                    @if(config('lerova.modules.gallery'))
+                 {{--   @if(getModuleStatus('gallery'))
                         <li><a href="{{ route('lerova.gallery.index') }}">Gallery</a>
                     @endif
+--}}
 
-
-                    @if(config('lerova.settings.status'))
+                    @if(getSettingStatus('status'))
                     <li><a href="{{ route('lerova.settings.index') }}">Settings</a></li>
                     @endif
 
@@ -61,7 +60,7 @@
 
                     @else
 
-                    @if(config('lerova.modules.notifications'))
+                    @if(getModuleStatus('notifications'))
                     <li><a href="{{ route('lerova.notifications.index') }}"> <i class="fa fa-bell" aria-hidden="true"></i>
 
                             @if($count_notifications > 0)

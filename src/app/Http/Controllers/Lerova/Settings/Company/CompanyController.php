@@ -11,19 +11,25 @@ class CompanyController extends Controller
 {
     public function __construct()
     {
-        if(!config('lerova.settings.company'))
+        if(!getSettingStatus('company'))
         {
             $this->middleware('role:developer');
         }
+
+
     }
 
     public function edit()
     {
-            $json = File::get(base_path('data/company.json'));
-
-            $company = json_decode($json);
-
+        if (!empty(getJSONFile('company'))) {
+            $company = getJSONFile('company');
             return view('lerova.settings.company.edit', compact('company'));
+
+        } else {
+            Session::flash('warning', 'Ups! Something went wrong. Please contact the Administrator');
+            return redirect()->back();
+        }
+
     }
 
     public function update(Request $request)
