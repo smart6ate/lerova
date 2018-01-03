@@ -1,1 +1,11 @@
-{ "facebook": null, "twitter": null, "instagram": null, "pinterest": null }
+{
+  "facebook": null,
+  "twitter": null,
+  "instagram": null,
+  "pinterest": null,
+  "linkedin": null,
+  "xing": null,
+  "google_plus": null,
+  "rss": null,
+  "github": null
+}

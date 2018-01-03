@@ -19,9 +19,15 @@ class CreateMembersTable extends Migration
 
             $table->increments('id');
             $table->string('name');
-            $table->string('teaser')->nullable();
-            $table->string('body')->nullable();
+            $table->text('teaser')->nullable();
+            $table->string('education')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->json('tags')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('xing')->nullable();
+            $table->string('google_plus')->nullable();
+            $table->string('web')->nullable();
             $table->string('image');
 
             $table->boolean('published')->default(false);

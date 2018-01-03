@@ -27,8 +27,14 @@ class Member extends Model
     {
             $value = $this->getAttributes();;
             unset($value['teaser']);
-            unset($value['body']);
+            unset($value['education']);
+            unset($value['email']);
+            unset($value['phone']);
             unset($value['tags']);
+            unset($value['linkedin']);
+            unset($value['xing']);
+            unset($value['google_plus']);
+            unset($value['web']);
             unset($value['deleted_at']);
             if(!in_array(null, $value, true)) { return true; }
             return false;

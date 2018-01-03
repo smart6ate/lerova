@@ -38,5 +38,9 @@
   "privacy": {
     "name": "privacy",
     "status": "0"
+  },
+  "terms": {
+    "name": "terms",
+    "status": "0"
   }
 }

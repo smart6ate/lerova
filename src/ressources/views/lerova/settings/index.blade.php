@@ -207,6 +207,23 @@
                                 </div>
                             @endif
 
+                                @if(getSettingStatus('terms'))
+
+                                    <div class="col-md-4">
+
+                                        <a href="{{ route('lerova.settings.terms.edit') }}">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    <i class="fa fa-id-card-o fa-2x" aria-hidden="true"></i>
+                                                    <hr>
+                                                    <strong>Terms</strong>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                @endif
+
                         </div>
 
                     </div>

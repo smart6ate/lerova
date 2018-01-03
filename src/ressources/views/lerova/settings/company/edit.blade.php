@@ -33,13 +33,13 @@
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
 
-                    <h5>E-Mail</h5>
+                    <h5>E-Mail <span class="pull-right label label-info">required</span></h5>
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                         <div class="col-md-12">
 
-                            <input type="email" id="email" name="email" class="form-control" value="{{ $company->email }}"
+                            <input type="email" id="email" placeholder="E-Mail" name="email" class="form-control" value="{{ $company->email }}"
                                    required autofocus>
 
                             @if ($errors->has('email'))
@@ -52,7 +52,7 @@
 
                     </div>
 
-                    <h5>Phone</h5>
+                    <h5>Phone <span class="pull-right label label-info">optional</span></h5>
 
                     <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
 
@@ -71,7 +71,7 @@
                     </div>
 
 
-                    <h5>Web</h5>
+                    <h5>Web <span class="pull-right label label-info">optional</span></h5>
 
                     <div class="form-group{{ $errors->has('web') ? ' has-error' : '' }}">
 
@@ -89,7 +89,7 @@
 
                     </div>
 
-                    <h5>Google Maps</h5>
+                    <h5>Google Maps <span class="pull-right label label-info">optional</span></h5>
 
                     <div class="form-group{{ $errors->has('google_maps') ? ' has-error' : '' }}">
 
@@ -106,26 +106,6 @@
                         </div>
 
                     </div>
-
-
-                    <h5>Github</h5>
-
-                    <div class="form-group{{ $errors->has('github') ? ' has-error' : '' }}">
-
-                        <div class="col-md-12">
-
-                            <input type="url" id="github" placeholder="Github" name="github" class="form-control" value="{{ $company->github }}">
-
-                            @if ($errors->has('github'))
-                                <span class="help-block">
-                     <strong>{{ $errors->first('github') }}</strong>
-                      </span>
-                            @endif
-
-                        </div>
-
-                    </div>
-
 
                     <div class="form-group">
 

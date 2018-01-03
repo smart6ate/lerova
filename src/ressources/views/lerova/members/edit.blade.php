@@ -55,7 +55,7 @@
                             <textarea rows="2" style="resize: none;" id="teaser"
                                       placeholder="Teaser - Max. {{ config('lerova.core.blog.teaser_max') }} Characters"
                                       name="teaser"
-                                      class="form-control">{{ $member->teaser }}</textarea>
+                                      class="form-control">{{ old('teaser', $member->teaser) }}</textarea>
 
                             @if ($errors->has('teaser'))
                                 <span class="help-block">
@@ -66,16 +66,61 @@
                     </div>
 
 
-                    <h5>Body <span class="pull-right label label-info">required</span></h5>
-                    <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
+                    <h5>Education <span class="pull-right label label-info">optional</span></h5>
+
+                    <div class="form-group{{ $errors->has('education') ? ' has-error' : '' }}">
 
                         <div class="col-md-12">
-                            <textarea id="body" placeholder="Body" name="body"
-                                      class="form-control">{{ $member->body }}</textarea>
+                            <input id="education"
+                                   type="text" placeholder="Education"
+                                   name="education"
+                                   value="{{ old('education', $member->education) }}"
+                                   class="form-control">
 
-                            @if ($errors->has('body'))
+                            @if ($errors->has('education'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('body') }}</strong>
+                                        <strong>{{ $errors->first('education') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+
+                    <h5>E-Mail <span class="pull-right label label-info">optional</span></h5>
+
+                    <div class="form-group{{ $errors->has('education') ? ' has-error' : '' }}">
+
+                        <div class="col-md-12">
+                            <input id="email"
+                                   type="email"
+                                   placeholder="E-Mail"
+                                   name="email"
+                                   value="{{ old('email', $member->email) }}"
+                                   class="form-control">
+
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <h5>Phone <span class="pull-right label label-info">optional</span></h5>
+
+                    <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+
+                        <div class="col-md-12">
+                            <input id="phone"
+                                   type="tel"
+                                   placeholder="Phone"
+                                   name="phone"
+                                   value="{{ old('phone', $member->phone) }}"
+                                   class="form-control">
+
+                            @if ($errors->has('phone'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                             @endif
                         </div>
@@ -103,6 +148,90 @@
                             @endif
                         </div>
                     </div>
+
+                    <h5>LinkedIn <span class="pull-right label label-info">optional</span></h5>
+
+                    <div class="form-group{{ $errors->has('linkedin') ? ' has-error' : '' }}">
+
+                        <div class="col-md-12">
+                            <input id="linkedin"
+                                   type="text"
+                                   placeholder="LinkedIn"
+                                   name="linkedin"
+                                   value="{{ old('linkedin', $member->linkedin) }}"
+                                   class="form-control">
+
+                            @if ($errors->has('linkedin'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('linkedin') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <h5>Xing <span class="pull-right label label-info">optional</span></h5>
+
+                    <div class="form-group{{ $errors->has('xing') ? ' has-error' : '' }}">
+
+                        <div class="col-md-12">
+                            <input id="xing"
+                                   type="text"
+                                   placeholder="Xing"
+                                   name="xing"
+                                   value="{{ old('xing', $member->xing) }}"
+                                   class="form-control">
+
+                            @if ($errors->has('xing'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('xing') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+
+                    <h5>Google + <span class="pull-right label label-info">optional</span></h5>
+
+                    <div class="form-group{{ $errors->has('google_plus') ? ' has-error' : '' }}">
+
+                        <div class="col-md-12">
+                            <input id="google_plus"
+                                   type="text"
+                                   placeholder="Google +"
+                                   name="google_plus"
+                                   value="{{ old('google_plus', $member->google_plus) }}"
+                                   class="form-control">
+
+                            @if ($errors->has('google_plus'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('google_plus') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+
+                    <h5>Web<span class="pull-right label label-info">optional</span></h5>
+
+                    <div class="form-group{{ $errors->has('web') ? ' has-error' : '' }}">
+
+                        <div class="col-md-12">
+                            <input id="web"
+                                   type="text"
+                                   placeholder="Web"
+                                   name="web"
+                                   value="{{ old('web', $member->web) }}"
+                                   class="form-control">
+
+                            @if ($errors->has('web'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('web') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+
 
 
                     <h5>Images</h5>

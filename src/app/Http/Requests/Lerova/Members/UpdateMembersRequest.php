@@ -30,9 +30,15 @@ class UpdateMembersRequest extends FormRequest
     {
         return [
             'name' => 'required|max:' . config('lerova.core.blog.title_max'),
-            'teaser' => 'max:' .config('lerova.core.blog.teaser_max'),
-            'body' => '',
+            'teaser' => 'nullable|max:' .config('lerova.core.blog.teaser_max'),
+            'education' => 'nullable|max:250',
+            'email' => 'nullable|max:250',
+            'phone' => 'nullable|max:250',
             'tags' => 'array',
+            'linkedin' => 'nullable|max:250',
+            'xing' => 'nullable|max:250',
+            'google_plus' => 'nullable|max:250',
+            'web' => 'nullable|max:250',
             'image' => 'required|url',
         ];
     }

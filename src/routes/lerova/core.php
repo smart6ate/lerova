@@ -66,6 +66,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
             Route::group(['prefix' => '/legal'], function () {
 
+                Route::group(['prefix' => '/terms'], function () {
+                    Route::get('/', 'Lerova\Settings\Terms\TermsController@edit')->name('lerova.settings.terms.edit');
+                    Route::patch('/update', 'Lerova\Settings\Terms\TermsController@update')->name('lerova.settings.terms.update');
+                });
+
                 Route::group(['prefix' => '/imprint'], function () {
                     Route::get('/', 'Lerova\Settings\Imprint\ImprintController@edit')->name('lerova.settings.imprint.edit');
                     Route::patch('/update', 'Lerova\Settings\Imprint\ImprintController@update')->name('lerova.settings.imprint.update');

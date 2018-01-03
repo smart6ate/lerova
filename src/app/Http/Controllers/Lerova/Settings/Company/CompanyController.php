@@ -38,16 +38,14 @@ class CompanyController extends Controller
             'email' => 'nullable|email',
             'phone' => 'nullable|numeric',
             'web' => 'nullable|url',
-            'google_maps' => 'nullable|url',
-            'github' => 'nullable|url',
+            'google_maps' => 'nullable|url'
         ]);
 
         $company = array(
             'email' => request('email'),
             'phone' => request('phone'),
             'web' => request('web'),
-            'google_maps' => request('google_maps'),
-            'github' => request('github'),
+            'google_maps' => request('google_maps')
 
         );
 

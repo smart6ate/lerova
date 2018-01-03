@@ -29,20 +29,31 @@ class LinksController extends Controller
         }
     }
 
+
     public function update(Request $request)
     {
         $this->validate($request, [
             'facebook' => 'nullable|url',
-            'instagram' => 'nullable|url',
             'twitter' => 'nullable|url',
+            'instagram' => 'nullable|url',
             'pinterest' => 'nullable|url',
+            'linkedin' => 'nullable|url',
+            'xing' => 'nullable|url',
+            'google_plus' => 'nullable|url',
+            'rss' => 'nullable|url',
+            'github' => 'nullable|url',
         ]);
 
         $links = array(
             'facebook' => request('facebook'),
-            'instagram' => request('instagram'),
             'twitter' => request('twitter'),
+            'instagram' => request('instagram'),
             'pinterest' => request('pinterest'),
+            'linkedin' => request('linkedin'),
+            'xing' => request('xing'),
+            'google_plus' => request('google_plus'),
+            'rss' => request('rss'),
+            'github' => request('github'),
         );
 
 

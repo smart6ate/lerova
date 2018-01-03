@@ -38,8 +38,14 @@ class MembersController extends Controller
         Member::create([
             'name' => request('name'),
             'teaser' => request('teaser'),
-            'body' => request('body'),
+            'education' => request('education'),
+            'email' => request('email'),
+            'phone' => request('phone'),
             'tags' => request('tags'),
+            'linkedin' => request('linkedin'),
+            'xing' => request('xing'),
+            'google_plus' => request('google_plus'),
+            'web' => request('web'),
             'image' => request('image'),
         ]);
 
@@ -60,8 +66,14 @@ class MembersController extends Controller
 
             'name' => request('name'),
             'teaser' => request('teaser'),
-            'body' => request('body'),
+            'education' => request('education'),
+            'email' => request('email'),
+            'phone' => request('phone'),
             'tags' => request('tags'),
+            'linkedin' => request('linkedin'),
+            'xing' => request('xing'),
+            'google_plus' => request('google_plus'),
+            'web' => request('web'),
             'image' => request('image'),
         ]);
 
