@@ -79,7 +79,7 @@ class LerovaRemove extends Command
                 File::deleteDirectory(base_path('data'));
 
                 File::deleteDirectory(base_path('resources/lang/lerova'));
-                File::deleteDirectory(base_path('resources/views'));
+                File::deleteDirectory(base_path('resources/views/lerova'));
 
                 File::deleteDirectory(base_path('public/assets'));
                 File::deleteDirectory(base_path('routes/lerova'));
